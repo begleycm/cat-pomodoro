@@ -1,1 +1,1 @@
-Pomodoro timer project to learn html, css, and javascript.
+A fun Pomodoro timer project to learn HTML, CSS, and javascript.
