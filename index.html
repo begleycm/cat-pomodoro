@@ -5,14 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pomodoro timer!</title>
-    <link rel="stylesheet" type = "text/css" href = "style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" type="image/jpeg" href="images/cat_icon.jpg"> <!--Cat Icon stolen off pintrest-->
-    <script src="jsthings.js"></script>
+    <script src="script.js"></script>
 </head>
 
 <body>
-    <p>Hi!! Imagine there's a timer here</p>
-    <button onclick="rawr()">rawr button</button>
+    <div class="flex_container">
+        <h1>CAT BOY POMODORO!!!</h1>
+        <div class="timer" id="timer">99:99</div>
+        <div class="flex_sidebyside">
+            <button onclick="pause()" class="control_button">Pause</button>
+            <button onclick="play()" class="control_button">Play</button>
+            <button onclick="restart()" class="control_button">Reset</button>
+        </div>
+    </div>
+
+
 </body>
 
 </html>

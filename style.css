@@ -1,6 +1,53 @@
+/* the main body of the function */
 body {
-    background-color: #00b4d8;
-    color: #40434e;
-    max-width: 500px;
+    background-color: #3e4c5e;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+/* flex container that will help us align the elements on page. */
+.flex_container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40em;
     margin: auto;
 }
+
+.flex_sidebyside {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+/* the 3 buttons with class="controlbutton" */
+.control_button {
+    width: 10em;
+    margin: 1em;
+    background-color: #8b2635;
+    border: 20;
+    border-color: #2c3d55;
+    font-size: 1em;
+    line-height: 2em;
+}
+
+/* those 3 buttons when the user hovers over them */
+/* same thing but with a lighter background */
+.control_button:hover {
+    width: 10em;
+    margin: 1em;
+    background-color: #cc4055;
+    border: 20;
+    border-color: #2c3d55;
+    font-size: 1em;
+    line-height: 2em;
+}
+
+.timer {
+    font-size: 12em;
+}
+
+
+
