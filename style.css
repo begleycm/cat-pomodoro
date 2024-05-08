@@ -45,11 +45,6 @@ body {
     line-height: 2em;
 }
 
-#work_timer {
-    font-size: 10em;
-}
-
-/* Please fix this for me I was going insane */
-p {
-    font-size: 5em; 
+#work {
+    font-size: 5em;
 }
