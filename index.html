@@ -7,21 +7,24 @@
     <title>pomodoro timer!</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" type="image/jpeg" href="images/cat_icon.jpg"> <!--Cat Icon stolen off pintrest-->
-    <script src="script.js"></script>
 </head>
 
 <body>
-    <div class="flex_container">
+    <div class="flex_container" id="work_timer">
         <h1>CAT BOY POMODORO!!!</h1>
-        <div class="timer" id="timer">99:99</div>
+        <!--Work timer-->
+        <div class = "flex_sidebyside">
+            <p id="w_minutes">25</p><p class ="semicolon">:</p><p id="w_seconds">00</p>
+        </div>
+
         <div class="flex_sidebyside">
             <button onclick="pause()" class="control_button">Pause</button>
-            <button onclick="play()" class="control_button">Play</button>
-            <button onclick="restart()" class="control_button">Reset</button>
+            <button onclick="startTimer()" id="start" class="control_button">Start</button>
+            <button onclick="reset()" class="control_button">Reset</button>
         </div>
     </div>
 
-
 </body>
-
+<!--This is here bc for some reason it didn't work in the head-->
+<script src="script.js"></script>
 </html>
