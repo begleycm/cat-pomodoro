@@ -29,6 +29,9 @@ function timer() { // Increments timer by 1 second until 0
 }
 
 function pause() { // doesn't work
+  if (timerInterval == undefined) {
+    alert("You need to hit start!");
+  }
   stopInterval()
   timerInterval = undefined;
 }
