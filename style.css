@@ -1,10 +1,15 @@
+@font-face {
+    font-family: 'w95fa';
+    src: url(PixelOperator.ttf) format("truetype");
+}
+
 /* the main body of the function */
 body {
     background-color: #3e4c5e;
     color: black;
     display: flex;
     flex-direction: column;
-}
+} 
 
 /* flex container that will help us align the elements on page. */
 .flex_container {
@@ -14,6 +19,7 @@ body {
     justify-content: center;
     width: 40em;
     margin: auto;
+    font-family: 'w95fa';
 }
 
 .flex_sidebyside {
@@ -31,6 +37,7 @@ body {
     border-color: #2c3d55;
     font-size: 1em;
     line-height: 2em;
+    font-family: 'w95fa';
 }
 
 /* those 3 buttons when the user hovers over them */

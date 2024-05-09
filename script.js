@@ -2,14 +2,13 @@
 // better way to do this. You can just write code straight
 // in the File, but it doesnt guarantee all the page has loaded.
 window.onload = function () {
-  console.log("page loaded!")
+  console.log("page loaded!");
 };
 
 var wm = document.getElementById('w_minutes');
 var ws = document.getElementById('w_seconds');
 
-// store a ref to a timer variable
-var timerInterval;
+var timerInterval; // store a ref to a timer variable
 
 function start() { // starts timer
   if(timerInterval == undefined){
@@ -42,8 +41,6 @@ function reset() { // doesn't work
   timerInterval = undefined;
 }
 
-
-//stop timer
-function stopInterval() {
+function stopInterval() { // Stops the calculator
   clearInterval(timerInterval)
 }
