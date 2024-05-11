@@ -34,7 +34,6 @@ function reset() { // doesn't work
 
 function timer() { // Increments timer by 1 second until 0
   if(ws.innerText != 0) {
-    console.log(ws)
     ws.innerText--;
   } else if(wm.innerText != 0 && ws.innerText == 0) {
     ws.innerText = 59;
