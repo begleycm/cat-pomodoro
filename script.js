@@ -2,34 +2,20 @@
 // better way to do this. You can just write code straight
 // in the File, but it doesnt guarantee all the page has loaded.
 window.onload = function () {
-  console.log("page loaded!")
+  console.log("page loaded!");
 };
-
-var start = document.getElementById('start');
-var reset = document.getElementById('reset');
-var pause = document.getElementById('pause');
 
 var wm = document.getElementById('w_minutes');
 var ws = document.getElementById('w_seconds');
 
-// store a ref to a timer variable
-var timerInterval;
+var timerInterval; // store a ref to a timer variable
 
-function startTimer() { // starts timer
+function start() { // starts timer
   if(timerInterval == undefined){
     timerInterval = setInterval(timer, 1000);
   } else {
     alert("Timer is already running");
   } 
-}
-
-function pause() { // doesn't work
-  timerInterval = setInterval(timer, 1);
-}
-
-function reset() { // doesn't work
-  wm.innerText = "25";
-  ws.innerText = "00";
 }
 
 function timer() { // Increments timer by 1 second until 0
@@ -39,4 +25,24 @@ function timer() { // Increments timer by 1 second until 0
     ws.innerText = 59;
     wm.innerText--;
   }
+}
+
+function pause() { // doesn't work
+  if (timerInterval == undefined) {
+    alert("You need to hit start!");
+  }
+  stopInterval()
+  timerInterval = undefined;
+}
+
+function reset() { // doesn't work
+  wm.innerText = 25;
+  ws.innerText = "00";
+
+  stopInterval()
+  timerInterval = undefined;
+}
+
+function stopInterval() { // Stops the calculator
+  clearInterval(timerInterval)
 }
