@@ -8,6 +8,7 @@ window.onload = function () {
 
 var wm = document.getElementById('w_minutes'); // int
 var ws = document.getElementById('w_seconds'); // int
+var title = document.getElementById('title') // string?
 
 var timerInterval; // store a ref to a timer variable
 var is_break = false; // boolean for if a break is active
@@ -22,6 +23,10 @@ function start() { // starts timer
   } 
 }
 
+/**
+ * Handles timer related things like ticking it down as needed, switching
+ * to a break, and playing audio when the timer finishes.
+ */
 function timer() { // Increments timer by 1 second until 0
   if(ws.innerText != 0) {
     console.log(ws);
@@ -29,7 +34,8 @@ function timer() { // Increments timer by 1 second until 0
     if (parseInt(ws.innerText) < 10) {
       String(ws.innerText).padStart(2, '0');
     }
-    ws.innerText--;
+    ws.innerText--; // decrement by one
+    changeTimerTitle() // change title, after decrement so they match
   } else if (wm.innerText != 0 && ws.innerText == 0) {
     ws.innerText = 59;
     wm.innerText--;
@@ -69,6 +75,7 @@ function reset() { // doesn't work
 
   stopInterval()
   is_break = false;
+  title.innerText = "pomodoro timer!"
 }
 
 function short_break() { // Change to 5:00
@@ -115,4 +122,11 @@ function more() {
   }
 
   
+}
+
+/**
+ * Changes the title of the tab as the timer counts down.
+ */
+function changeTimerTitle() {
+  title.innerText = wm.textContent + ":" + ws.textContent
 }
