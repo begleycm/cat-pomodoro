@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pomodoro timer!</title>
+    <title id="title">pomodoro timer!</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="more_menu.css">
     <link rel="icon" type="image/jpeg" href="images/cat_icon.jpg"> <!--Cat Icon stolen off pintrest-->
@@ -13,6 +13,7 @@
 <body>
     <div class="flex_container" id="work_timer">
 
+        <div class="fauxwindow">
         <div class="fauxwindow" id="fauxwindow">
             <div class="titlebar" id="titlebar">
                 <h1 class="titletext">POMODORO TIMER!!!</h1>
@@ -36,7 +37,7 @@
             </div>
 
             <div class="flex_sidebyside">
-                <button onclick="pause()" id="pause" class="control_button">Pause</button>
+                <!-- <button onclick="pause()" id="pause" class="control_button">Pause</button> -->
                 <button onclick="start()" id="start" class="control_button">Start</button>
                 <button onclick="reset()" id="reset" class="control_button">Reset</button>
                 <!-- <button onclick="set3()" id="set3" class="control_button">test</button> -->

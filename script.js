@@ -8,21 +8,19 @@ window.onload = function () {
 
 var wm = document.getElementById('w_minutes'); // int
 var ws = document.getElementById('w_seconds'); // int
+var title = document.getElementById('title') // string?
+var play = document.getElementById("start") // string
 
 var timerInterval; // store a ref to a timer variable
-var is_break = false; // boolean for if a break is active
+var isBreak = false; // boolean for if a break is active
+var isPaused = true; // true at start, true if timer isn't moving
 
 var alarmSound = new Audio("sounds/Ding.mp3")
 
-
-function start() { // starts timer
-  if(timerInterval == undefined){
-    timerInterval = setInterval(timer, 1000);
-  } else {
-    alert("Timer is already running");
-  } 
-}
-
+/**
+ * Handles timer related things like ticking it down as needed, switching
+ * to a break, and playing audio when the timer finishes.
+ */
 function timer() { // Increments timer by 1 second until 0
   if(ws.innerText != 0) {
     console.log(ws);
@@ -30,7 +28,8 @@ function timer() { // Increments timer by 1 second until 0
     if (parseInt(ws.innerText) < 10) {
       String(ws.innerText).padStart(2, '0');
     }
-    ws.innerText--;
+    ws.innerText--; // decrement by one
+    changeTimerTitle() // change title, after decrement so they match
   } else if (wm.innerText != 0 && ws.innerText == 0) {
     ws.innerText = 59;
     wm.innerText--;
@@ -42,7 +41,7 @@ function timer() { // Increments timer by 1 second until 0
     ws.innerText = "00";
 
     document.getElementById('counter').innerText++; // +1 to counter
-    is_break = true;
+    isBreak = true;
 
      playAlarm() // plays a ding
 
@@ -52,40 +51,69 @@ function timer() { // Increments timer by 1 second until 0
     wm.innerText = 25;
     ws.innerText = "00";
 
-    is_break = false;
+    isBreak = false;
     playAlarm() // plays a ding
   }
 }
 
-function pause() { // doesn't work
+/**
+ * Starts the timer from whatever time it is at.
+ */
+function start() { 
+  if (isPaused) {
+    if(timerInterval == undefined){
+      timerInterval = setInterval(timer, 1000);
+    } else {
+      alert("Timer is already running");
+    } 
+    isPaused = false;
+    play.innerText = "Pause";
+    
+  } else {
+    pause()
+  }
+}
+
+/**
+ * Pauses the timer.
+ */
+function pause() { 
   if (timerInterval == undefined) {
     alert("You need to hit start!");
   }
   stopInterval()
+  play.innerText = "Start"
+  isPaused = true;
 }
 
-function reset() { // doesn't work
+/**
+ * Resets the timer, and the title. Currently does NOT reset the counter.
+ */
+function reset() { 
   wm.innerText = 25;
   ws.innerText = "00";
 
-  stopInterval()
-  is_break = false;
+  pause();
+  isBreak = false;
+  title.innerText = "pomodoro timer!"
 }
 
 function short_break() { // Change to 5:00
   wm.innerText = 5;
   ws.innerText = "00";
+  title.innerText = "5:00"
 
-  stopInterval();
-  is_break = true;
+  pause();
+  isBreak = true;
 }
 
 function long_break() { // Change to 10:00
   wm.innerText = 10;
   ws.innerText = "00";
+  title.innerText = "10:00"
 
-  stopInterval();
-  is_break = true;
+  pause();
+  isBreak = true;
 }
 
 function stopInterval() { // Stops the calculator
@@ -93,7 +121,7 @@ function stopInterval() { // Stops the calculator
   timerInterval = undefined;
 }
 
-function set3() { // test func that sets the timer to 0:03
+function set3() { // test func(delete later)
   wm.innerText = 0;
   ws.innerText = "03";
 }
@@ -115,7 +143,14 @@ function settings() {
     menu.style.visibility = "hidden"
   }
 
-  
+
+}
+
+/**
+ * Changes the title of the tab as the timer counts down.
+ */
+function changeTimerTitle() {
+  title.innerText = wm.textContent + ":" + ws.textContent
 }
 
 // making draggable window
