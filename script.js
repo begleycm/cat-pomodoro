@@ -14,6 +14,7 @@ var is_break = false; // boolean for if a break is active
 
 var alarmSound = new Audio("sounds/Ding.mp3")
 
+
 function start() { // starts timer
   if(timerInterval == undefined){
     timerInterval = setInterval(timer, 1000);
@@ -116,3 +117,29 @@ function more() {
 
   
 }
+
+// making draggable window
+const titleBars = document.querySelectorAll(".titlebar");
+var selection = null
+
+function onMouseDrag({ movementX, movementY }) {
+  if (selection){
+    let getTitleBarStyle = window.getComputedStyle(selection.parentElement);
+    let leftValue = parseInt(getTitleBarStyle.left);
+    let topValue = parseInt(getTitleBarStyle.top);
+    selection.parentElement.style.left = `${leftValue + movementX}px`;
+    selection.parentElement.style.top = `${topValue + movementY}px`;
+  }
+}
+
+document.addEventListener("mousemove", onMouseDrag)
+
+titleBars.forEach(titleBar => {
+  titleBar.addEventListener("mousedown", (event) => {
+      selection = event.target;
+  });
+});
+
+document.addEventListener("mouseup", () => {
+    selection = null;
+});
