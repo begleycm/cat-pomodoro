@@ -92,10 +92,10 @@ function stopInterval() { // Stops the calculator
   timerInterval = undefined;
 }
 
-// function set3() { // test func that sets the timer to 0:03
-//   wm.innerText = 0;
-//   ws.innerText = "03";
-// }
+function set3() { // test func that sets the timer to 0:03
+  wm.innerText = 0;
+  ws.innerText = "03";
+}
 
 function playAlarm() { // plays alarm
   alarmSound.volume = 0.35 // set sound to 35/100
