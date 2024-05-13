@@ -6,11 +6,13 @@ window.onload = function () {
   more(); // this just auto closes the window, theres probably a better way to do this.
 };
 
-var wm = document.getElementById('w_minutes');
-var ws = document.getElementById('w_seconds');
+var wm = document.getElementById('w_minutes'); // int
+var ws = document.getElementById('w_seconds'); // int
 
 var timerInterval; // store a ref to a timer variable
-var is_break = false; // sets break to false
+var is_break = false; // boolean for if a break is active
+
+var alarmSound = new Audio("sounds/Ding.mp3")
 
 function start() { // starts timer
   if(timerInterval == undefined){
@@ -40,12 +42,17 @@ function timer() { // Increments timer by 1 second until 0
 
     document.getElementById('counter').innerText++; // +1 to counter
     is_break = true;
+
+     playAlarm() // plays a ding
+
+
   } else if (wm.innerText == 0 && ws.innerText == 0 && is_break) {
     // If break finishes, go back to 25, don't increment counter
     wm.innerText = 25;
     ws.innerText = "00";
 
     is_break = false;
+    playAlarm() // plays a ding
   }
 }
 
@@ -85,6 +92,15 @@ function stopInterval() { // Stops the calculator
   timerInterval = undefined;
 }
 
+// function set3() { // test func that sets the timer to 0:03
+//   wm.innerText = 0;
+//   ws.innerText = "03";
+// }
+
+function playAlarm() { // plays alarm
+  alarmSound.volume = 0.35 // set sound to 35/100
+  alarmSound.play()
+}
 
 
 function more() {
