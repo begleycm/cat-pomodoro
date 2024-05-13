@@ -20,11 +20,22 @@ function start() { // starts timer
 
 function timer() { // Increments timer by 1 second until 0
   if(ws.innerText != 0) {
-    console.log(ws)
+    console.log(ws);
+    console.log(typeof(ws));
+    if (parseInt(ws.innerText) < 10) {
+      String(ws.innerText).padStart(2, '0');
+    }
     ws.innerText--;
-  } else if(wm.innerText != 0 && ws.innerText == 0) {
+  } else if (wm.innerText != 0 && ws.innerText == 0) {
     ws.innerText = 59;
     wm.innerText--;
+  }
+
+  if(wm.innerText == 0 && ws.innerText == 0) {
+    wm.innerText = 25;
+    ws.innerText = "00";
+
+    document.getElementById('counter').innerText++;
   }
 }
 
