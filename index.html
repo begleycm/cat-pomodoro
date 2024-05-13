@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pomodoro timer!</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="more_menu.css">
     <link rel="icon" type="image/jpeg" href="images/cat_icon.jpg"> <!--Cat Icon stolen off pintrest-->
 </head>
 
 <body>
     <div class="flex_container" id="work_timer">
+
         <h1>CAT BOY POMODORO!!!</h1>
+
+        
         <!--Work timer-->
         <div class = "flex_sidebyside" id="work">
             <p id="w_minutes">25</p><p>:</p><p id="w_seconds">00</p>
@@ -21,6 +25,17 @@
             <button onclick="pause()" id="pause" class="control_button">Pause</button>
             <button onclick="start()" id="start" class="control_button">Start</button>
             <button onclick="reset()" id="reset" class="control_button">Reset</button>
+        </div>
+    </div>
+
+    <button class="more_button" onclick="more()">More...</button>
+
+    <div class="more_menu" id="more_menu">
+        <div class="more_flex_container">
+            <h1>More...</h1>
+            <div class="settings">
+                <p> settings</p>
+            </div>
         </div>
     </div>
 

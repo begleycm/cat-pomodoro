@@ -3,6 +3,10 @@
     src: url(PixelOperator.ttf) format("truetype");
 }
 
+* {
+    font-family: 'w95fa';
+}
+
 /* the main body of the function */
 body {
     background-color: #3e4c5e;
@@ -19,7 +23,7 @@ body {
     justify-content: center;
     width: 40em;
     margin: auto;
-    font-family: 'w95fa';
+    
 }
 
 .flex_sidebyside {
@@ -56,3 +60,22 @@ body {
     font-size: 5em;
     
 }
+
+.more_button {
+    width: 5em;
+    height: 5em;
+    background-color: #cc4055;
+    border: 20;
+    border-color: #2c3d55;
+    font-size: 1em;
+    line-height: 2em;
+
+    position: fixed;
+    top: 2em;
+    right: 2em;
+}
+
+.more_button:hover {
+    background-color: #8b2635;
+}
+

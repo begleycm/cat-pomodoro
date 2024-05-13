@@ -46,3 +46,17 @@ function reset() { // doesn't work
 function stopInterval() { // Stops the calculator
   clearInterval(timerInterval)
 }
+
+function more() {
+  let menu = document.getElementById("more_menu")
+  
+  
+  if (menu.style.visibility === "hidden") {
+    menu.style.visibility = "visible";
+  }
+  else {
+    menu.style.visibility = "hidden"
+  }
+
+  
+}
