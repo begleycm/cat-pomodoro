@@ -97,6 +97,6 @@ body {
     
 }
 
-#counter {
-    margin-left: 0.1em;
+#counter:before {
+    content: "\00a0 ";
 }
