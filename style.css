@@ -61,27 +61,14 @@ body {
     
 }
 
-.more_button {
-    width: 5em;
-    height: 5em;
-    background-color: #cc4055;
-    border: 20;
-    border-color: #2c3d55;
-    font-size: 1em;
-    line-height: 2em;
-
-    position: fixed;
-    top: 2em;
-    right: 2em;
-}
-
-.more_button:hover {
-    background-color: #8b2635;
-}
 
 .fauxwindow {
     background-color: aquamarine;
-    margin-top: 6vh;
+    /* margin-top: 6vh; */
+    position: absolute;
+    top: 12em;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 
 .titlebar {
@@ -90,11 +77,79 @@ body {
     position:relative;
 }
 
+.menubar {
+    background-color: coral;
+    height: 1.5em;
+    position: relative;
+
+    display: flex;
+}
+
+.menubutton {
+    background-color: darkcyan;
+    margin-right: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.menubutton:hover {
+    background-color: rgb(15, 87, 87);
+    margin-right: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
 .titletext {
     position: absolute;
     left: 10px;
     bottom: -12px;
     
+}
+
+.closebutton {
+    width: 2.5em;
+    height: 2.5em;
+    background-color: #8b2635;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+    position: absolute;
+    right: .25em;
+    bottom: .25em;
+}
+
+.closebutton:hover {
+    width: 2.5em;
+    height: 2.5em;
+    background-color: #3b030b;
+
+    position: absolute;
+    right: .25em;
+    bottom: .25em;
+}
+
+.closebutton {
+    width: 2.5em;
+    height: 2.5em;
+    background-color: #8b2635;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+    position: absolute;
+    right: .25em;
+    bottom: .25em;
+}
+
+.closebutton:hover {
+    width: 2.5em;
+    height: 2.5em;
+    background-color: #3b030b;
+
+    position: absolute;
+    right: .25em;
+    bottom: .25em;
 }
 
 #counter:before {

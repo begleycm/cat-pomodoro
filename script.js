@@ -15,14 +15,6 @@ var is_break = false; // boolean for if a break is active
 
 var alarmSound = new Audio("sounds/Ding.mp3")
 
-function start() { // starts timer
-  if(timerInterval == undefined){
-    timerInterval = setInterval(timer, 1000);
-  } else {
-    alert("Timer is already running");
-  } 
-}
-
 /**
  * Handles timer related things like ticking it down as needed, switching
  * to a break, and playing audio when the timer finishes.
@@ -62,6 +54,14 @@ function timer() { // Increments timer by 1 second until 0
   }
 }
 
+function start() { // starts timer
+  if(timerInterval == undefined){
+    timerInterval = setInterval(timer, 1000);
+  } else {
+    alert("Timer is already running");
+  } 
+}
+
 function pause() { // doesn't work
   if (timerInterval == undefined) {
     alert("You need to hit start!");
@@ -99,7 +99,7 @@ function stopInterval() { // Stops the calculator
   timerInterval = undefined;
 }
 
-function set3() { // test func that sets the timer to 0:03
+function set3() { // test func(delete later)
   wm.innerText = 0;
   ws.innerText = "03";
 }
@@ -121,7 +121,7 @@ function more() {
     menu.style.visibility = "hidden"
   }
 
-  
+
 }
 
 /**
@@ -130,3 +130,29 @@ function more() {
 function changeTimerTitle() {
   title.innerText = wm.textContent + ":" + ws.textContent
 }
+
+// making draggable window
+const titleBars = document.querySelectorAll(".titlebar");
+var selection = null
+
+function onMouseDrag({ movementX, movementY }) {
+  if (selection){
+    let getTitleBarStyle = window.getComputedStyle(selection.parentElement);
+    let leftValue = parseInt(getTitleBarStyle.left);
+    let topValue = parseInt(getTitleBarStyle.top);
+    selection.parentElement.style.left = `${leftValue + movementX}px`;
+    selection.parentElement.style.top = `${topValue + movementY}px`;
+  }
+}
+
+document.addEventListener("mousemove", onMouseDrag)
+
+titleBars.forEach(titleBar => {
+  titleBar.addEventListener("mousedown", (event) => {
+      selection = event.target;
+  });
+});
+
+document.addEventListener("mouseup", () => {
+    selection = null;
+});
