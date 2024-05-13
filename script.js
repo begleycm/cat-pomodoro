@@ -6,10 +6,13 @@ window.onload = function () {
   more(); // this just auto closes the window, theres probably a better way to do this.
 };
 
-var wm = document.getElementById('w_minutes');
-var ws = document.getElementById('w_seconds');
+var wm = document.getElementById('w_minutes'); // int
+var ws = document.getElementById('w_seconds'); // int
 
 var timerInterval; // store a ref to a timer variable
+var is_break = false; // boolean for if a break is active
+
+var alarmSound = new Audio("sounds/Ding.mp3")
 
 function start() { // starts timer
   if(timerInterval == undefined){
@@ -32,11 +35,24 @@ function timer() { // Increments timer by 1 second until 0
     wm.innerText--;
   }
 
-  if(wm.innerText == 0 && ws.innerText == 0) {
+  // If reaches 0 and there's no break, go to 5
+  if(wm.innerText == 0 && ws.innerText == 0 && !is_break) {
+    wm.innerText = 5;
+    ws.innerText = "00";
+
+    document.getElementById('counter').innerText++; // +1 to counter
+    is_break = true;
+
+     playAlarm() // plays a ding
+
+
+  } else if (wm.innerText == 0 && ws.innerText == 0 && is_break) {
+    // If break finishes, go back to 25, don't increment counter
     wm.innerText = 25;
     ws.innerText = "00";
 
-    document.getElementById('counter').innerText++;
+    is_break = false;
+    playAlarm() // plays a ding
   }
 }
 
@@ -45,7 +61,6 @@ function pause() { // doesn't work
     alert("You need to hit start!");
   }
   stopInterval()
-  timerInterval = undefined;
 }
 
 function reset() { // doesn't work
@@ -53,12 +68,40 @@ function reset() { // doesn't work
   ws.innerText = "00";
 
   stopInterval()
-  timerInterval = undefined;
+  is_break = false;
+}
+
+function short_break() { // Change to 5:00
+  wm.innerText = 5;
+  ws.innerText = "00";
+
+  stopInterval();
+  is_break = true;
+}
+
+function long_break() { // Change to 10:00
+  wm.innerText = 10;
+  ws.innerText = "00";
+
+  stopInterval();
+  is_break = true;
 }
 
 function stopInterval() { // Stops the calculator
   clearInterval(timerInterval)
+  timerInterval = undefined;
 }
+
+// function set3() { // test func that sets the timer to 0:03
+//   wm.innerText = 0;
+//   ws.innerText = "03";
+// }
+
+function playAlarm() { // plays alarm
+  alarmSound.volume = 0.35 // set sound to 35/100
+  alarmSound.play()
+}
+
 
 function more() {
   let menu = document.getElementById("more_menu")
