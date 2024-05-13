@@ -12,12 +12,16 @@
 
 <body>
     <div class="flex_container" id="work_timer">
-        <h1>POMODORO TIMER!!!</h1>
+
+        <div class="fauxwindow">
+        <div class="titlebar">
+            <h1 class="titletext">POMODORO TIMER!!!</h1>
+        </div>
         <!--Work timer-->
         <div class = "flex_sidebyside" id="work">
-            <p id="w_minutes">25</p><p>:</p><p id="w_seconds">00</p> <!--Currently starts at 25-->
+            <p id="w_minutes">25</p><p>:</p><p id="w_seconds">00</p> <!--Currently starts at 25--> <p id="counter">&emsp13;0</p>
             <!-- <p id="counter" class="timer">0</p> -->
-            <p id="counter">&emsp13;0</p>
+            
         </div>
 
         <div class="flex_sidebyside">
@@ -29,6 +33,8 @@
             <button onclick="short_break()" id="pause" class="control_button">Short Break</button>
             <button onclick="long_break()" id="start" class="control_button">Long Break</button>
         </div>
+
+    </div>
     </div>
 
     <button class="more_button" onclick="more()">More...</button>

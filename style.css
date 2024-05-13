@@ -79,3 +79,20 @@ body {
     background-color: #8b2635;
 }
 
+.fauxwindow {
+    background-color: aquamarine;
+    margin-top: 6vh;
+}
+
+.titlebar {
+    background-color: #cc4055;
+    height: 3em;
+}
+
+.titletext {
+    position: absolute;
+    left: 20;
+    top: 5;
+    
+}
+

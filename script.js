@@ -3,6 +3,7 @@
 // in the File, but it doesnt guarantee all the page has loaded.
 window.onload = function () {
   console.log("page loaded!");
+  more(); // this just auto closes the window, theres probably a better way to do this.
 };
 
 var wm = document.getElementById('w_minutes');
