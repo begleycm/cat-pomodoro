@@ -3,7 +3,7 @@
 // in the File, but it doesnt guarantee all the page has loaded.
 window.onload = function () {
   console.log("page loaded!");
-  more(); // this just auto closes the window, theres probably a better way to do this.
+  settings(); // this just auto closes the window, theres probably a better way to do this.
 };
 
 var wm = document.getElementById('w_minutes'); // int
@@ -104,8 +104,8 @@ function playAlarm() { // plays alarm
 }
 
 
-function more() {
-  let menu = document.getElementById("more_menu")
+function settings() {
+  let menu = document.getElementById("settings_menu")
   
   
   if (menu.style.visibility === "hidden") {
@@ -124,11 +124,12 @@ var selection = null
 
 function onMouseDrag({ movementX, movementY }) {
   if (selection){
-    let getTitleBarStyle = window.getComputedStyle(selection.parentElement);
+    let myParent = selection.closest(".fauxwindow")
+    let getTitleBarStyle = window.getComputedStyle(myParent);
     let leftValue = parseInt(getTitleBarStyle.left);
     let topValue = parseInt(getTitleBarStyle.top);
-    selection.parentElement.style.left = `${leftValue + movementX}px`;
-    selection.parentElement.style.top = `${topValue + movementY}px`;
+    myParent.style.left = `${leftValue + movementX}px`;
+    myParent.style.top = `${topValue + movementY}px`;
   }
 }
 

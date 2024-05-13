@@ -155,3 +155,15 @@ body {
 #counter:before {
     content: "\00a0 ";
 }
+
+#settings_menu {
+    width:15em;
+    height: 20em;
+
+    position: absolute;
+
+    top: 14em;
+    left: 75%;
+    transform: translate(-50%, 0);
+
+}
