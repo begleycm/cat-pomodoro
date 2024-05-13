@@ -9,9 +9,11 @@ window.onload = function () {
 var wm = document.getElementById('w_minutes'); // int
 var ws = document.getElementById('w_seconds'); // int
 var title = document.getElementById('title') // string?
+var play = document.getElementById("start") // string
 
 var timerInterval; // store a ref to a timer variable
-var is_break = false; // boolean for if a break is active
+var isBreak = false; // boolean for if a break is active
+var isPaused = true; // true at start, true if timer isn't moving
 
 var alarmSound = new Audio("sounds/Ding.mp3")
 
@@ -39,7 +41,7 @@ function timer() { // Increments timer by 1 second until 0
     ws.innerText = "00";
 
     document.getElementById('counter').innerText++; // +1 to counter
-    is_break = true;
+    isBreak = true;
 
      playAlarm() // plays a ding
 
@@ -49,49 +51,69 @@ function timer() { // Increments timer by 1 second until 0
     wm.innerText = 25;
     ws.innerText = "00";
 
-    is_break = false;
+    isBreak = false;
     playAlarm() // plays a ding
   }
 }
 
-function start() { // starts timer
-  if(timerInterval == undefined){
-    timerInterval = setInterval(timer, 1000);
+/**
+ * Starts the timer from whatever time it is at.
+ */
+function start() { 
+  if (isPaused) {
+    if(timerInterval == undefined){
+      timerInterval = setInterval(timer, 1000);
+    } else {
+      alert("Timer is already running");
+    } 
+    isPaused = false;
+    play.innerText = "Pause";
+    
   } else {
-    alert("Timer is already running");
-  } 
+    pause()
+  }
 }
 
-function pause() { // doesn't work
+/**
+ * Pauses the timer.
+ */
+function pause() { 
   if (timerInterval == undefined) {
     alert("You need to hit start!");
   }
   stopInterval()
+  play.innerText = "Start"
+  isPaused = true;
 }
 
-function reset() { // doesn't work
+/**
+ * Resets the timer, and the title. Currently does NOT reset the counter.
+ */
+function reset() { 
   wm.innerText = 25;
   ws.innerText = "00";
 
-  stopInterval()
-  is_break = false;
+  pause();
+  isBreak = false;
   title.innerText = "pomodoro timer!"
 }
 
 function short_break() { // Change to 5:00
   wm.innerText = 5;
   ws.innerText = "00";
+  title.innerText = "5:00"
 
-  stopInterval();
-  is_break = true;
+  pause();
+  isBreak = true;
 }
 
 function long_break() { // Change to 10:00
   wm.innerText = 10;
   ws.innerText = "00";
+  title.innerText = "10:00"
 
-  stopInterval();
-  is_break = true;
+  pause();
+  isBreak = true;
 }
 
 function stopInterval() { // Stops the calculator
@@ -108,7 +130,6 @@ function playAlarm() { // plays alarm
   alarmSound.volume = 0.35 // set sound to 35/100
   alarmSound.play()
 }
-
 
 function more() {
   let menu = document.getElementById("more_menu")
