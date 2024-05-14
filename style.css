@@ -30,6 +30,7 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: row;
+    
 }
 
 /* the 3 buttons with class="controlbutton" */
@@ -166,4 +167,21 @@ body {
     left: 75%;
     transform: translate(-50%, 0);
 
+}
+
+#about_menu {
+    width:15em;
+    height: 20em;
+
+    position: absolute;
+
+    top: 14em;
+    left: 75%;
+    transform: translate(-50%, 0);
+
+}
+
+
+.hidden {
+    display: none;
 }

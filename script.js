@@ -4,6 +4,7 @@
 window.onload = function () {
   console.log("page loaded!");
   settings(); // this just auto closes the window, theres probably a better way to do this.
+  about();
 };
 
 var wm = document.getElementById('w_minutes'); // int
@@ -131,27 +132,14 @@ function playAlarm() { // plays alarm
   alarmSound.play()
 }
 
-
-function settings() {
-  let menu = document.getElementById("settings_menu")
-  
-  
-  if (menu.style.visibility === "hidden") {
-    menu.style.visibility = "visible";
-  }
-  else {
-    menu.style.visibility = "hidden"
-  }
-
-
-}
-
 /**
  * Changes the title of the tab as the timer counts down.
  */
 function changeTimerTitle() {
   title.innerText = wm.textContent + ":" + ws.textContent
 }
+
+///////////////////////////// Menu stuff /////////////////////////////
 
 // making draggable window
 const titleBars = document.querySelectorAll(".titlebar");
@@ -178,4 +166,55 @@ titleBars.forEach(titleBar => {
 
 document.addEventListener("mouseup", () => {
     selection = null;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function settings() {
+  let menu = document.getElementById("settings_menu")
+  
+  
+  if (menu.style.visibility === "hidden") {
+    menu.style.visibility = "visible";
+  }
+  else {
+    menu.style.visibility = "hidden"
+  }
+
+
+}
+
+function about() {
+  let aboutVis = document.getElementById("about_menu")
+  
+  if (aboutVis.style.visibility === "hidden") {
+    aboutVis.style.visibility = "visible";
+  }
+  else {
+    aboutVis.style.visibility = "hidden"
+  }
+}
+
+// Event listener for the close button in the about menu
+document.getElementById("about_menu").getElementsByClassName("closebutton")[0].addEventListener("click", function() {
+  about()
+});
+
+// Event listener for the close button in the settings menu
+document.getElementById("settings_menu").getElementsByClassName("closebutton")[0].addEventListener("click", function() {
+  settings()
 });
