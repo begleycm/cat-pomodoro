@@ -124,37 +124,13 @@ body {
 }
 
 .closebutton:hover {
-    width: 2.5em;
-    height: 2.5em;
+
     background-color: #3b030b;
 
-    position: absolute;
-    right: .25em;
-    bottom: .25em;
+
 }
 
-.closebutton {
-    width: 2.5em;
-    height: 2.5em;
-    background-color: #8b2635;
-    align-items: center;
-    justify-content: center;
-    display: flex;
 
-    position: absolute;
-    right: .25em;
-    bottom: .25em;
-}
-
-.closebutton:hover {
-    width: 2.5em;
-    height: 2.5em;
-    background-color: #3b030b;
-
-    position: absolute;
-    right: .25em;
-    bottom: .25em;
-}
 
 #counter:before {
     content: "\00a0 ";
