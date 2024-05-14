@@ -5,14 +5,19 @@ window.onload = function () {
   console.log("page loaded!");
   settings(); // this just auto closes the window, theres probably a better way to do this.
   about();
+  reset();
 };
 
 var wm = document.getElementById('w_minutes'); // int
 var ws = document.getElementById('w_seconds'); // int
+var studyT = 25
+var shortT = 5
+var longT = 10
+
 var title = document.getElementById('title') // string?
 var play = document.getElementById("start") // string
-
 var timerInterval; // store a ref to a timer variable
+
 var isBreak = false; // boolean for if a break is active
 var isPaused = true; // true at start, true if timer isn't moving
 
@@ -37,8 +42,8 @@ function timer() { // Increments timer by 1 second until 0
   }
 
   // If reaches 0 and there's no break, go to 5
-  if(wm.innerText == 0 && ws.innerText == 0 && !is_break) {
-    wm.innerText = 5;
+  if(wm.innerText == 0 && ws.innerText == 0 && !isBreak) {
+    wm.innerText = shortT;
     ws.innerText = "00";
 
     document.getElementById('counter').innerText++; // +1 to counter
@@ -47,9 +52,9 @@ function timer() { // Increments timer by 1 second until 0
      playAlarm() // plays a ding
 
 
-  } else if (wm.innerText == 0 && ws.innerText == 0 && is_break) {
+  } else if (wm.innerText == 0 && ws.innerText == 0 && isBreak) {
     // If break finishes, go back to 25, don't increment counter
-    wm.innerText = 25;
+    wm.innerText = studyT;
     ws.innerText = "00";
 
     isBreak = false;
@@ -79,9 +84,6 @@ function start() {
  * Pauses the timer.
  */
 function pause() { 
-  if (timerInterval == undefined) {
-    alert("You need to hit start!");
-  }
   stopInterval()
   play.innerText = "Start"
   isPaused = true;
@@ -91,27 +93,27 @@ function pause() {
  * Resets the timer, and the title. Currently does NOT reset the counter.
  */
 function reset() { 
-  wm.innerText = 25;
+  wm.innerText = studyT;
   ws.innerText = "00";
-
+  
   pause();
   isBreak = false;
   title.innerText = "pomodoro timer!"
 }
 
 function short_break() { // Change to 5:00
-  wm.innerText = 5;
+  wm.innerText = shortT;
   ws.innerText = "00";
-  title.innerText = "5:00"
+  title.innerText = shortT.toString
 
   pause();
   isBreak = true;
 }
 
 function long_break() { // Change to 10:00
-  wm.innerText = 10;
+  wm.innerText = longT;
   ws.innerText = "00";
-  title.innerText = "10:00"
+  title.innerText = longT.toString
 
   pause();
   isBreak = true;
@@ -122,13 +124,8 @@ function stopInterval() { // Stops the calculator
   timerInterval = undefined;
 }
 
-function set3() { // test func(delete later)
-  wm.innerText = 0;
-  ws.innerText = "03";
-}
-
 function playAlarm() { // plays alarm
-  alarmSound.volume = 0.35 // set sound to 35/100
+  alarmSound.volume = slider.value / 100 // set sound to toggle bar in settings
   alarmSound.play()
 }
 
@@ -183,21 +180,9 @@ slider.oninput = function() {
   output.innerHTML = this.value;
 } 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * Opens and closes the settings menu.
+ */
 function settings() {
   let menu = document.getElementById("settings_menu")
   
@@ -208,10 +193,11 @@ function settings() {
   else {
     menu.style.visibility = "hidden"
   }
-
-
 }
 
+/**
+ * Opens and closes the about menu.
+ */
 function about() {
   let aboutVis = document.getElementById("about_menu")
   
@@ -223,12 +209,29 @@ function about() {
   }
 }
 
-// Event listener for the close button in the about menu
-document.getElementById("about_menu").getElementsByClassName("closebutton")[0].addEventListener("click", function() {
-  about()
-});
+/**
+ * Saves all settings once the "Save" button is clicked.
+ */
+function saveSettings() {
+  var studyTime = document.getElementById("studyTime").value
+  var shortTime = document.getElementById("shortTime").value
+  var longTime = document.getElementById("longTime").value
 
-// Event listener for the close button in the settings menu
-document.getElementById("settings_menu").getElementsByClassName("closebutton")[0].addEventListener("click", function() {
-  settings()
-});
+  if (studyTime != "") {
+    studyT = studyTime
+  } else {
+    studyT = 25
+  }
+  if (shortTime != "") {
+    shortT = shortTime
+  } else {
+    shortT = 5
+  }
+  if (longTime != "") {
+    longT = longTime
+  } else {
+    longT = 10
+  }
+  console.log(studyT)
+  reset()
+}
