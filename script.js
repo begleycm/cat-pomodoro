@@ -5,7 +5,7 @@ window.onload = function () {
   console.log("page loaded!");
   settings(); // this just auto closes the window, theres probably a better way to do this.
   about();
-  reset();
+  reset(); // reset to default each opening
 };
 
 var wm = document.getElementById('w_minutes'); // int
@@ -18,10 +18,11 @@ var title = document.getElementById('title') // string?
 var play = document.getElementById("start") // string
 var timerInterval; // store a ref to a timer variable
 
-var isBreak = false; // boolean for if a break is active
+var isBreak = false; // bool for if a break is active
 var isPaused = true; // true at start, true if timer isn't moving
 
 var alarmSound = new Audio("sounds/Ding.mp3")
+var soundOn = true; // bool for if sound should be on
 
 /**
  * Handles timer related things like ticking it down as needed, switching
@@ -48,8 +49,7 @@ function timer() { // Increments timer by 1 second until 0
 
     document.getElementById('counter').innerText++; // +1 to counter
     isBreak = true;
-
-     playAlarm() // plays a ding
+    playAlarm() // plays a ding
 
 
   } else if (wm.innerText == 0 && ws.innerText == 0 && isBreak) {
@@ -125,8 +125,10 @@ function stopInterval() { // Stops the calculator
 }
 
 function playAlarm() { // plays alarm
-  alarmSound.volume = slider.value / 100 // set sound to toggle bar in settings
-  alarmSound.play()
+  if (soundOn) {
+    alarmSound.volume = slider.value / 100 // set sound to toggle bar in settings
+    alarmSound.play()
+  }
 }
 
 /**
@@ -216,6 +218,7 @@ function saveSettings() {
   var studyTime = document.getElementById("studyTime").value
   var shortTime = document.getElementById("shortTime").value
   var longTime = document.getElementById("longTime").value
+  let soundCheck = document.getElementById("soundCheckBox")
 
   if (studyTime != "") {
     studyT = studyTime
@@ -232,6 +235,8 @@ function saveSettings() {
   } else {
     longT = 10
   }
-  console.log(studyT)
-  reset()
+  soundOn = soundCheck.checked // True if checked, false if not
+
+  reset() // should simply reset timer, change later possibly
+  alert("Settings saved!")
 }
