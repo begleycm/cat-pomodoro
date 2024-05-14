@@ -147,10 +147,14 @@ var selection = null
 
 function onMouseDrag({ movementX, movementY }) {
   if (selection){
+    // setting myParent to the greater window ancestor
     let myParent = selection.closest(".fauxwindow")
+    // getting a computed value of the style (position) of the window
     let getTitleBarStyle = window.getComputedStyle(myParent);
+    // getting the distance from the left and top of the screen
     let leftValue = parseInt(getTitleBarStyle.left);
     let topValue = parseInt(getTitleBarStyle.top);
+    // adjusting the window style values to be the new x and y values
     myParent.style.left = `${leftValue + movementX}px`;
     myParent.style.top = `${topValue + movementY}px`;
   }
@@ -168,6 +172,16 @@ document.addEventListener("mouseup", () => {
     selection = null;
 });
 
+// volume slider code from w3schools, this might be sus.
+
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+  output.innerHTML = this.value;
+} 
 
 
 

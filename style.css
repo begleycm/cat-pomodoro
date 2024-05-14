@@ -67,7 +67,7 @@ body {
     background-color: #1d2f3d;
     /* margin-top: 6vh; */
     position: absolute;
-    top: 12em;
+    top: 10%;
     left: 50%;
     transform: translate(-50%, 0);
 }
@@ -163,11 +163,11 @@ body {
 
 #settings_menu {
     /* width:15em; */
-    height: 20em;
+    /* height: 20em; */
 
     position: absolute;
 
-    top: 14em;
+    top: 25%;
     left: 75%;
     transform: translate(-50%, 0);
 
@@ -179,8 +179,8 @@ body {
 
     position: absolute;
 
-    top: 14em;
-    left: 75%;
+    top: 20%;
+    left: 25%;
     transform: translate(-50%, 0);
 
 }
@@ -196,19 +196,43 @@ input {
     background-color: #00ff00;
 }
 
-/* Change the color of the increment button */
-input[type="number"]::-webkit-inner-spin-button {
-    background-color: #ff0000; /* Red color */
-    color: #1cb15f; /* Green color */
-}
-
-/* Change the color of the decrement button */
-input[type="number"]::-webkit-outer-spin-button {
-    background-color: #00ff00; /* Green color */
-    color: #3b1675; /* Purple color */
-}
 
 #settings_menu p {
     margin: .5em;
     font-size: 2em;
 }
+
+
+/* Volume slider style from w3 schools, edited by ben b. */
+.slidecontainer {
+    width: 100%; /* Width of the outside container */
+  }
+  
+  /* The slider itself */
+  .slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 80%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    border-radius: 3px;
+  }
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #cc4055;
+    border-color: #8b2635;
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #cc4055;
+    border-color: #8b2635;
+    cursor: pointer; /* Cursor on hover */
+  }
