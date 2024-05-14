@@ -14,69 +14,75 @@
     <div class="flex_container" id="work_timer">
 
         <div class="fauxwindow">
-        <div class="fauxwindow" id="fauxwindow">
-            <div class="titlebar" id="titlebar">
-                <h1 class="titletext">POMODORO TIMER!!!</h1>
-                <div class="closebutton"><div>X</div></div>
+            <div class="fauxwindow" id="fauxwindow">
+                <div class="titlebar" id="titlebar">
+                    <h1 class="titletext">POMODORO TIMER!!!</h1>
+                    <div class="closebutton">
+                        <div>X</div>
+                    </div>
+                </div>
+
+                <div class="menubar">
+                    <div class="menubutton">file</div>
+                    <div class="menubutton" onclick="about()">about</div>
+                    <div class="menubutton" onclick="settings()">settings</div>
+                </div>
+
+                <!--Work timer-->
+                <div class="flex_sidebyside" id="work">
+                    <p id="w_minutes">25</p>
+                    <p>:</p>
+                    <p id="w_seconds">00</p> <!--Currently starts at 25-->
+
+                    <p id="counter">0</p> <!--Counter for completed pomodoros-->
+
+                </div>
+
+                <div class="flex_sidebyside">
+                    <!-- <button onclick="pause()" id="pause" class="control_button">Pause</button> -->
+                    <button onclick="start()" id="start" class="control_button">Start</button>
+                    <button onclick="reset()" id="reset" class="control_button">Reset</button>
+                    <!-- <button onclick="set3()" id="set3" class="control_button">test</button> -->
+                </div>
+                <div class="flex_sidebyside">
+                    <button onclick="short_break()" id="pause" class="control_button">Short Break</button>
+                    <button onclick="long_break()" id="start" class="control_button">Long Break</button>
+                </div>
+
             </div>
-
-            <div class="menubar">
-                <div class="menubutton">file</div>
-                <div class="menubutton" onclick="about()">about</div>
-                <div class="menubutton" onclick="settings()">settings</div>
-            </div>
-
-            <!--Work timer-->
-            <div class="flex_sidebyside" id="work">
-                <p id="w_minutes">25</p>
-                <p>:</p>
-                <p id="w_seconds">00</p> <!--Currently starts at 25-->
-                
-                <p id="counter">0</p> <!--Counter for completed pomodoros-->
-
-            </div>
-
-            <div class="flex_sidebyside">
-                <!-- <button onclick="pause()" id="pause" class="control_button">Pause</button> -->
-                <button onclick="start()" id="start" class="control_button">Start</button>
-                <button onclick="reset()" id="reset" class="control_button">Reset</button>
-                <!-- <button onclick="set3()" id="set3" class="control_button">test</button> -->
-            </div>
-            <div class="flex_sidebyside">
-                <button onclick="short_break()" id="pause" class="control_button">Short Break</button>
-                <button onclick="long_break()" id="start" class="control_button">Long Break</button>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="fauxwindow" id="settings_menu">
-
-        <div class ="titlebar">
-            <h1 class="titletext">Settings</h1>
-            <div class="closebutton"><div>X</div></div>
         </div>
 
-        <div class="more_flex_container">
-            <p>
-                meow meow meow meow mewo
-            </p>
-        </div>
-    </div>
+        <div class="fauxwindow" id="settings_menu">
 
-    <div class="fauxwindow" id="about_menu">
-
-        <div class ="titlebar">
-            <h1 class="titletext">About</h1>
-            <div class="closebutton"><div>X</div></div>
+            <div class="titlebar">
+                <h1 class="titletext">Settings</h1>
+                <div class="closebutton">
+                    <div>X</div>
+                </div>
+            </div>
+            <div class="flex_container">
+                <div class="flex_sidebyside">
+                    <p>Study Time:</p>
+                    <input type="number">
+                </div>
+            </div>
         </div>
 
-        <div class="more_flex_container">
-            <p>
-                Pomodoro timer. Made by Connor Begley and Ben Bonnell. raWr.
-            <p>
+        <div class="fauxwindow" id="about_menu">
+
+            <div class="titlebar">
+                <h1 class="titletext">About</h1>
+                <div class="closebutton">
+                    <div>X</div>
+                </div>
+            </div>
+
+            <div class="more_flex_container">
+                <p>
+                    Pomodoro timer. Made by Connor Begley and Ben Bonnell. raWr.
+                <p>
+            </div>
         </div>
-    </div>
 
 </body>
 <!--This is here bc for some reason it didn't work in the head-->

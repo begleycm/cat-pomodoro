@@ -9,7 +9,7 @@
 
 /* the main body of the function */
 body {
-    background-color: #3e4c5e;
+    background-color: #40553a;
     color: black;
     display: flex;
     flex-direction: column;
@@ -21,7 +21,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 40em;
     margin: auto;
     
 }
@@ -64,7 +63,8 @@ body {
 
 
 .fauxwindow {
-    background-color: aquamarine;
+    color: gainsboro;
+    background-color: #1d2f3d;
     /* margin-top: 6vh; */
     position: absolute;
     top: 12em;
@@ -73,13 +73,13 @@ body {
 }
 
 .titlebar {
-    background-color: #cc4055;
+    background-color: #2c3d55;
     height: 3em;
     position:relative;
 }
 
 .menubar {
-    background-color: coral;
+    background-color: #3e4c5e;
     height: 1.5em;
     position: relative;
 
@@ -87,17 +87,21 @@ body {
 }
 
 .menubutton {
-    background-color: darkcyan;
-    margin-right: 1px;
+    background-color: #3e4c5e;
+    /* margin-right: 2px; */
     padding-left: 2px;
     padding-right: 2px;
+    border-style: solid;
+    border-color: black;
+    border-left: 0;
+    border-top: 0;
+    border-bottom: 0;
+    border-width: 1px;
+    
 }
 
 .menubutton:hover {
-    background-color: rgb(15, 87, 87);
-    margin-right: 1px;
-    padding-left: 2px;
-    padding-right: 2px;
+    background-color: #516279;
 }
 
 .titletext {
@@ -158,7 +162,7 @@ body {
 }
 
 #settings_menu {
-    width:15em;
+    /* width:15em; */
     height: 20em;
 
     position: absolute;
@@ -181,7 +185,30 @@ body {
 
 }
 
-
 .hidden {
     display: none;
+}
+
+input {
+    margin: .5em;
+    width: 2em;
+    font-size: 2em;
+    background-color: #00ff00;
+}
+
+/* Change the color of the increment button */
+input[type="number"]::-webkit-inner-spin-button {
+    background-color: #ff0000; /* Red color */
+    color: #1cb15f; /* Green color */
+}
+
+/* Change the color of the decrement button */
+input[type="number"]::-webkit-outer-spin-button {
+    background-color: #00ff00; /* Green color */
+    color: #3b1675; /* Purple color */
+}
+
+#settings_menu p {
+    margin: .5em;
+    font-size: 2em;
 }
