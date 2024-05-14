@@ -57,22 +57,22 @@
 
             <div class="titlebar">
                 <h1 class="titletext">Settings</h1>
-                <div class="closebutton">
+                <div class="closebutton" onclick="settings()">
                     <div>X</div>
                 </div>
             </div>
             <div class="flex_container">
                 <div class="flex_sidebyside">
                     <p>Study Time:</p>
-                    <input type="number">
+                    <input type="number" id="studyTime">
                 </div>
                 <div class="flex_sidebyside">
                     <p>Short Break Time:</p>
-                    <input type="number">
+                    <input type="number" id="shortTime">
                 </div>
                 <div class="flex_sidebyside">
                     <p>Long Break Time:</p>
-                    <input type="number">
+                    <input type="number" id="longTime">
                 </div>
                 <div class="flex_sidebyside">
                     <p>Sound on?</p>
@@ -80,6 +80,9 @@
                 </div>
                 <div class="slidecontainer">
                     <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                </div>
+                <div class="flex_sidebyside">
+                    <button onclick="saveSettings()" id="saveSettings" class="control_button">Save</button>
                 </div>
             </div>
         </div>
@@ -89,7 +92,7 @@
 
             <div class="titlebar">
                 <h1 class="titletext">About</h1>
-                <div class="closebutton">
+                <div class="closebutton" onclick="about()">
                     <div>X</div>
                 </div>
             </div>
