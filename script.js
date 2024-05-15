@@ -140,7 +140,7 @@ function changeTimerTitle() {
 
 ///////////////////////////// Menu stuff /////////////////////////////
 
-// making draggable window
+// making draggable window (this code is just diabolical im sorry)
 const titleBars = document.querySelectorAll(".titlebar");
 var selection = null
 
@@ -149,13 +149,33 @@ function onMouseDrag({ movementX, movementY }) {
     // setting myParent to the greater window ancestor
     let myParent = selection.closest(".fauxwindow")
     // getting a computed value of the style (position) of the window
-    let getTitleBarStyle = window.getComputedStyle(myParent);
+    let getStyle = window.getComputedStyle(myParent);
     // getting the distance from the left and top of the screen
-    let leftValue = parseInt(getTitleBarStyle.left);
-    let topValue = parseInt(getTitleBarStyle.top);
+    let leftValue = parseInt(getStyle.left);
+    let topValue = parseInt(getStyle.top);
+
+    let leftFuture = leftValue + movementX;
+    let topFuture = topValue + movementY;
+
+    // get the parent window dimensions
+    let parentWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    let parentHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
     // adjusting the window style values to be the new x and y values
-    myParent.style.left = `${leftValue + movementX}px`;
-    myParent.style.top = `${topValue + movementY}px`;
+
+    if (leftFuture + (parseInt(getStyle.width) / 2) < parentWidth && leftFuture > (parseInt(getStyle.width) / 2)){
+      myParent.style.left = `${leftFuture}px`;
+    }
+
+
+    if (topFuture + (parseInt(getStyle.height)) < parentHeight && topFuture > 0){
+      myParent.style.top = `${topFuture}px`;
+    }
+    else {
+      console.log("not workin son:", topFuture)
+    }
+    
+    
   }
 }
 

@@ -56,10 +56,10 @@ body {
     line-height: 2em;
 }
 
-#work {
+/* #work {
     font-size: 5em;
     
-}
+} */
 
 .fauxwindow {
     color: gainsboro;
@@ -137,7 +137,7 @@ body {
 }
 
 #settings_menu {
-    /* width:15em; */
+    width: 25em;
     /* height: 20em; */
 
     position: absolute;
@@ -211,3 +211,8 @@ input {
     border-color: #8b2635;
     cursor: pointer; /* Cursor on hover */
   }
+
+
+ #timer_menu {
+    width: 45em;
+ }

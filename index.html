@@ -6,51 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="title">pomodoro timer!</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="more_menu.css">
     <link rel="icon" type="image/jpeg" href="images/cat_icon.jpg"> <!--Cat Icon stolen off pintrest-->
 </head>
 
 <body>
     <div class="flex_container" id="work_timer">
 
-        <div class="fauxwindow">
-            <div class="fauxwindow" id="fauxwindow">
-                <div class="titlebar" id="titlebar">
-                    <h1 class="titletext">POMODORO TIMER!!!</h1>
-                    <div class="closebutton">
-                        <div>X</div>
-                    </div>
-                </div>
+        <div class="fauxwindow" id="timer_menu">
 
-                <div class="menubar">
-                    <div class="menubutton">file</div>
-                    <div class="menubutton" onclick="about()">about</div>
-                    <div class="menubutton" onclick="settings()">settings</div>
+            <div class="titlebar" id="titlebar">
+                <h1 class="titletext">POMODORO TIMER!!!</h1>
+                <div class="closebutton">
+                    <div>X</div>
                 </div>
+            </div>
 
-                <!--Work timer-->
-                <h1>Break</h1>
+            <div class="menubar">
+                <div class="menubutton">file</div>
+                <div class="menubutton" onclick="about()">about</div>
+                <div class="menubutton" onclick="settings()">settings</div>
+            </div>
+
+            <!--Work timer-->
+            <h1>Break</h1>
+            <div class="timer">
                 <div class="flex_sidebyside" id="work">
                     <p id="w_minutes">25</p>
                     <p>:</p>
                     <p id="w_seconds">00</p> <!--Currently starts at 25-->
 
                     <p id="counter">0</p> <!--Counter for completed pomodoros-->
-
                 </div>
-
-                <div class="flex_sidebyside">
-                    <!-- <button onclick="pause()" id="pause" class="control_button">Pause</button> -->
-                    <button onclick="start()" id="start" class="control_button">Start</button>
-                    <button onclick="reset()" id="reset" class="control_button">Reset</button>
-                    <!-- <button onclick="set3()" id="set3" class="control_button">test</button> -->
-                </div>
-                <div class="flex_sidebyside">
-                    <button onclick="short_break()" id="pause" class="control_button">Short Break</button>
-                    <button onclick="long_break()" id="start" class="control_button">Long Break</button>
-                </div>
-
             </div>
+
+            <div class="flex_sidebyside">
+                <!-- <button onclick="pause()" id="pause" class="control_button">Pause</button> -->
+                <button onclick="start()" id="start" class="control_button">Start</button>
+                <button onclick="reset()" id="reset" class="control_button">Reset</button>
+                <!-- <button onclick="set3()" id="set3" class="control_button">test</button> -->
+            </div>
+            <div class="flex_sidebyside">
+                <button onclick="short_break()" id="pause" class="control_button">Short Break</button>
+                <button onclick="long_break()" id="start" class="control_button">Long Break</button>
+            </div>
+
+
         </div>
 
         <!-- SETTINGS MENU -->
@@ -104,12 +104,12 @@
                     Pomodoro timer project made by Connor Begley and Ben Bonnell. pomodoro
                     is a study technique used to work in intervals separated by short breaks.
                 <p>
-                <img src="images/cat_icon.jpg" alt="catLogo" style="width:100px;height:100px;">
+                    <img src="images/cat_icon.jpg" alt="catLogo" style="width:100px;height:100px;">
             </div>
         </div>
 
 </body>
-<!--This is here bc for some reason it didn't work in the head-->
+
 <script src="script.js"></script>
 
 </html>
