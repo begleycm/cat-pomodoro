@@ -10,6 +10,8 @@ window.onload = function () {
 
 var wm = document.getElementById('w_minutes'); // int
 var ws = document.getElementById('w_seconds'); // int
+
+// Default times:
 var studyT = 25
 var shortT = 5
 var longT = 10
