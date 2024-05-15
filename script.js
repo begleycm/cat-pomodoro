@@ -24,6 +24,7 @@ var isBreak = false; // bool for if a break is active
 var isPaused = true; // true at start, true if timer isn't moving
 
 var alarmSound = new Audio("sounds/Ding.mp3")
+var clickAudio = new Audio("sounds/mixkit-interface-click-1126.wav")  // click button sound
 var soundOn = true; // bool for if sound should be on
 
 /**
@@ -32,8 +33,6 @@ var soundOn = true; // bool for if sound should be on
  */
 function timer() { // Increments timer by 1 second until 0
   if(ws.innerText != 0) {
-    console.log(ws);
-    console.log(typeof(ws));
     if (parseInt(ws.innerText) < 10) {
       String(ws.innerText).padStart(2, '0');
     }
@@ -68,7 +67,7 @@ function timer() { // Increments timer by 1 second until 0
  * Starts the timer from whatever time it is at.
  */
 function start() { 
-  clickSound()
+  // clickSound()
   if (isPaused) {
     if(timerInterval == undefined){
       timerInterval = setInterval(timer, 1000);
@@ -87,7 +86,7 @@ function start() {
  * Pauses the timer.
  */
 function pause() { 
-  clickSound()
+  // clickSound()
   stopInterval()
   play.innerText = "Start"
   isPaused = true;
@@ -97,7 +96,7 @@ function pause() {
  * Resets the timer, and the title. Currently does NOT reset the counter.
  */
 function reset() { 
-  clickSound()
+  // clickSound()
   wm.innerText = studyT;
   ws.innerText = "00";
   
@@ -107,7 +106,7 @@ function reset() {
 }
 
 function short_break() { // Change to 5:00
-  clickSound()
+  // clickSound()
   wm.innerText = shortT;
   ws.innerText = "00";
   title.innerText = shortT.toString
@@ -117,7 +116,7 @@ function short_break() { // Change to 5:00
 }
 
 function long_break() {
-  clickSound() // Change to 10:00
+  // clickSound() // Change to 10:00
   wm.innerText = longT;
   ws.innerText = "00";
   title.innerText = longT.toString
@@ -127,14 +126,13 @@ function long_break() {
 }
 
 function stopInterval() {
-  clickSound() // Stops the calculator
+  // clickSound() // Stops the calculator
   clearInterval(timerInterval)
   timerInterval = undefined;
 }
 
 function playAlarm() { // plays alarm
   if (soundOn) {
-    alarmSound.volume = slider.value / 100 // set sound to toggle bar in settings
     alarmSound.play()
   }
 }
@@ -203,7 +201,7 @@ document.addEventListener("mouseup", () => {
 
 var slider = document.getElementById("myRange");
 var output = document.getElementById("demo");
-output.innerHTML = slider.value; // Display the default slider value
+// output.innerHTML = slider.value; // Display the default slider value
 
 // Update the current slider value (each time you drag the slider handle)
 slider.oninput = function() {
@@ -214,7 +212,7 @@ slider.oninput = function() {
  * Opens and closes the settings menu.
  */
 function settings() {
-  clickSound()
+  // clickSound()
   let menu = document.getElementById("settings_menu")
   
   
@@ -230,7 +228,7 @@ function settings() {
  * Opens and closes the about menu.
  */
 function about() {
-  clickSound()
+  // clickSound()
   let aboutVis = document.getElementById("about_menu")
   
   if (aboutVis.style.visibility === "hidden") {
@@ -245,7 +243,7 @@ function about() {
  * Saves all settings once the "Save" button is clicked.
  */
 function saveSettings() {
-  clickSound()
+  // clickSound()
   var studyTime = document.getElementById("studyTime").value
   var shortTime = document.getElementById("shortTime").value
   var longTime = document.getElementById("longTime").value
@@ -267,14 +265,19 @@ function saveSettings() {
     longT = 10
   }
   soundOn = soundCheck.checked // True if checked, false if not
+  alarmSound.volume = slider.value / 100 // set sound to toggle bar in settings
+  clickAudio.volume = slider.value / 100 // click audio
 
   reset() // should simply reset timer, change later possibly
-  alert("Settings saved!")
 }
 
-function clickSound() {
-  console.log("click sound")
-  var audio = new Audio("sounds/mixkit-interface-click-1126.wav")  // this could probs be refactored to top of project or something
-  audio.play();
-}
+// Get all elements with the class "control_button"
+var buttons = document.getElementsByClassName("control_button");
 
+// Iterate over each button and add an event listener for audio
+for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function() {
+        console.log("click sound action");
+        clickAudio.play();
+    });
+}
