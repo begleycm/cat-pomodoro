@@ -67,7 +67,6 @@ function timer() { // Increments timer by 1 second until 0
  * Starts the timer from whatever time it is at.
  */
 function start() { 
-  // clickSound()
   if (isPaused) {
     if(timerInterval == undefined){
       timerInterval = setInterval(timer, 1000);
@@ -86,7 +85,6 @@ function start() {
  * Pauses the timer.
  */
 function pause() { 
-  // clickSound()
   stopInterval()
   play.innerText = "Start"
   isPaused = true;
@@ -96,7 +94,6 @@ function pause() {
  * Resets the timer, and the title. Currently does NOT reset the counter.
  */
 function reset() { 
-  // clickSound()
   wm.innerText = studyT;
   ws.innerText = "00";
   
@@ -106,7 +103,6 @@ function reset() {
 }
 
 function short_break() { // Change to 5:00
-  // clickSound()
   wm.innerText = shortT;
   ws.innerText = "00";
   title.innerText = shortT.toString
@@ -116,7 +112,6 @@ function short_break() { // Change to 5:00
 }
 
 function long_break() {
-  // clickSound() // Change to 10:00
   wm.innerText = longT;
   ws.innerText = "00";
   title.innerText = longT.toString
@@ -126,7 +121,7 @@ function long_break() {
 }
 
 function stopInterval() {
-  // clickSound() // Stops the calculator
+  // Stops the calculator
   clearInterval(timerInterval)
   timerInterval = undefined;
 }
@@ -243,7 +238,6 @@ function about() {
  * Saves all settings once the "Save" button is clicked.
  */
 function saveSettings() {
-  // clickSound()
   var studyTime = document.getElementById("studyTime").value
   var shortTime = document.getElementById("shortTime").value
   var longTime = document.getElementById("longTime").value
