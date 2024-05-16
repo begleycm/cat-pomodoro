@@ -3,11 +3,13 @@
 // in the File, but it doesnt guarantee all the page has loaded.
 window.onload = function () {
   console.log("page loaded!");
-  settings(); // this just auto closes the window, theres probably a better way to do this.
+  // Auto close window:
+  settings();
   about();
   reset(); // reset to default each opening
 };
 
+// Timer minutes and seconds:
 var wm = document.getElementById('w_minutes'); // int
 var ws = document.getElementById('w_seconds'); // int
 
@@ -16,55 +18,51 @@ var studyT = 25
 var shortT = 5
 var longT = 10
 
-var title = document.getElementById('title') // string?
+// General variables:
+var title = document.getElementById('title') // string
 var play = document.getElementById("start") // string
 var timerInterval; // store a ref to a timer variable
-
 var isBreak = false; // bool for if a break is active
 var isPaused = true; // true at start, true if timer isn't moving
 
-var alarmSound = new Audio("sounds/Ding.mp3")
-var clickAudio = new Audio("sounds/mixkit-interface-click-1126.wav")  // click button sound
-var soundOn = true; // bool for if sound should be on
-
 /**
  * Handles timer related things like ticking it down as needed, switching
- * to a break, and playing audio when the timer finishes.
+ * to a break, and playing audio when the timer finishes. 
+ * Increments timer by 1 second until 0.
  */
-function timer() { // Increments timer by 1 second until 0
+function timer() {
   if(ws.innerText != 0) {
     if (parseInt(ws.innerText) < 10) {
       String(ws.innerText).padStart(2, '0');
     }
-    ws.innerText--; // decrement by one
-    changeTimerTitle() // change title, after decrement so they match
+    ws.innerText--; // -1 each second
+    changeTimerTitle() // change title for each second passed
   } else if (wm.innerText != 0 && ws.innerText == 0) {
-    ws.innerText = 59;
+    ws.innerText = 59; // -1 minute
     wm.innerText--;
   }
 
-  // If reaches 0 and there's no break, go to 5
+  // If reaches 0 and there's no break active, go to 5
   if(wm.innerText == 0 && ws.innerText == 0 && !isBreak) {
     wm.innerText = shortT;
     ws.innerText = "00";
 
     document.getElementById('counter').innerText++; // +1 to counter
-    isBreak = true;
-    playAlarm() // plays a ding
+    isBreak = true; // break now active
+    playAlarm()
 
-
+  // If reaches 0 and there is a break, reset to default study time
   } else if (wm.innerText == 0 && ws.innerText == 0 && isBreak) {
-    // If break finishes, go back to 25, don't increment counter
     wm.innerText = studyT;
     ws.innerText = "00";
 
-    isBreak = false;
-    playAlarm() // plays a ding
+    isBreak = false; // break no longer active
+    playAlarm()
   }
 }
 
 /**
- * Starts the timer from whatever time it is at.
+ * Starts the timer from whatever time it is at. Basically a play button.
  */
 function start() { 
   if (isPaused) {
@@ -91,9 +89,22 @@ function pause() {
 }
 
 /**
- * Resets the timer, and the title. Currently does NOT reset the counter.
+ * Resets the timer, and the title. Does reset the counter.
  */
 function reset() { 
+  wm.innerText = studyT;
+  ws.innerText = "00";
+  document.getElementById('counter').innerText = 0;
+  
+  pause();
+  isBreak = false;
+  title.innerText = "Pomodoro timer!"
+}
+
+/**
+ * Resets the timer, and the title. Does NOT reset the counter.
+ */
+function resetNotCounter() { 
   wm.innerText = studyT;
   ws.innerText = "00";
   
@@ -102,31 +113,47 @@ function reset() {
   title.innerText = "pomodoro timer!"
 }
 
-function short_break() { // Change to 5:00
+/**
+ * Sets the timer to a short break.
+ */
+function short_break() {
+  defaultTitle()
   wm.innerText = shortT;
   ws.innerText = "00";
-  title.innerText = shortT.toString
 
   pause();
   isBreak = true;
 }
 
+/**
+ * Sets the timer to a long break.
+ */
 function long_break() {
+  defaultTitle()
   wm.innerText = longT;
   ws.innerText = "00";
-  title.innerText = longT.toString
 
   pause();
   isBreak = true;
 }
 
+/**
+ * Stops the calculator.
+ */
 function stopInterval() {
-  // Stops the calculator
   clearInterval(timerInterval)
   timerInterval = undefined;
 }
 
-function playAlarm() { // plays alarm
+// Audio stuff:
+var alarmSound = new Audio("sounds/Ding.mp3")
+var clickAudio = new Audio("sounds/mixkit-interface-click-1126.wav")  // click button sound
+var soundOn = true; // bool for if sound should be on
+
+/**
+ * Plays the alarm sound.
+ */
+function playAlarm() {
   if (soundOn) {
     alarmSound.play()
   }
@@ -139,7 +166,14 @@ function changeTimerTitle() {
   title.innerText = wm.textContent + ":" + ws.textContent
 }
 
-///////////////////////////// Menu stuff /////////////////////////////
+/**
+ * Changes the title of the tab as the timer counts down.
+ */
+function defaultTitle() {
+  title.innerText = "Pomodoro timer!"
+}
+
+///////////////////////////// Window stuff ///////////////////////////////
 
 // making draggable window (this code is just diabolical im sorry)
 const titleBars = document.querySelectorAll(".titlebar");
@@ -204,10 +238,37 @@ slider.oninput = function() {
 } 
 
 /**
+ * Opens and closes the about menu.
+ */
+function about() {
+  let aboutVis = document.getElementById("about_menu")
+  
+  if (aboutVis.style.visibility === "hidden") {
+    aboutVis.style.visibility = "visible";
+  }
+  else {
+    aboutVis.style.visibility = "hidden"
+  }
+}
+
+// Get all elements with the class "control_button"
+var buttons = document.getElementsByClassName("control_button");
+
+// Iterate over each button and add an event listener for audio
+for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function() {
+        console.log("click sound action");
+        clickAudio.play();
+    });
+}
+
+
+////////////////////// Settings stuff //////////////////////
+
+/**
  * Opens and closes the settings menu.
  */
 function settings() {
-  // clickSound()
   let menu = document.getElementById("settings_menu")
   
   
@@ -216,21 +277,6 @@ function settings() {
   }
   else {
     menu.style.visibility = "hidden"
-  }
-}
-
-/**
- * Opens and closes the about menu.
- */
-function about() {
-  // clickSound()
-  let aboutVis = document.getElementById("about_menu")
-  
-  if (aboutVis.style.visibility === "hidden") {
-    aboutVis.style.visibility = "visible";
-  }
-  else {
-    aboutVis.style.visibility = "hidden"
   }
 }
 
@@ -262,16 +308,5 @@ function saveSettings() {
   alarmSound.volume = slider.value / 100 // set sound to toggle bar in settings
   clickAudio.volume = slider.value / 100 // click audio
 
-  reset() // should simply reset timer, change later possibly
-}
-
-// Get all elements with the class "control_button"
-var buttons = document.getElementsByClassName("control_button");
-
-// Iterate over each button and add an event listener for audio
-for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function() {
-        console.log("click sound action");
-        clickAudio.play();
-    });
+  resetNotCounter()
 }
