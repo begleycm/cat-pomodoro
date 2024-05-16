@@ -9,8 +9,7 @@
 
 /* the main body of the function */
 body {
-    background-color: #40553a;
-    color: black;
+    background-image: url("images/darktile.png");
     display: flex;
     flex-direction: column;
 } 
@@ -64,7 +63,10 @@ body {
 .fauxwindow {
     color: gainsboro;
     background-color: #1d2f3d;
-    /* margin-top: 6vh; */
+    border-style: solid;
+    border-color: #fdf0d5;
+    border-width: 1px;
+    
     position: absolute;
     top: 10%;
     left: 50%;
@@ -73,13 +75,39 @@ body {
 
 .titlebar {
     background-color: #2c3d55;
-    height: 3em;
+    height: 26px;
     position:relative;
+}
+
+.titlebar h1 {
+    font-size: 20px;
+
+    position: absolute;
+    left: 10px;
+    bottom: -12px;
+}
+
+.titlebar button {
+    width: 20px;
+    height: 20px;
+
+    color: white;
+    background-color: #8b2635;
+    justify-content: center;
+
+
+    position: absolute;
+    right: .25em;
+    bottom: .25em;
+}
+
+.titlebar button:hover {
+    background-color: #3b030b;
 }
 
 .menubar {
     background-color: #3e4c5e;
-    height: 1.5em;
+    height: 20px;
     position: relative;
 
     display: flex;
@@ -99,35 +127,20 @@ body {
     
 }
 
+
+
 .menubutton:hover {
     background-color: #516279;
 }
 
-.titletext {
-    position: absolute;
-    left: 10px;
-    bottom: -12px;
+.windowbody {
+    background-color: #fdf0d5;
+
+    color: black;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000000;
     
-}
-
-.closebutton {
-    width: 2.5em;
-    height: 2.5em;
-    background-color: #8b2635;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-
-    position: absolute;
-    right: .25em;
-    bottom: .25em;
-}
-
-.closebutton:hover {
-
-    background-color: #3b030b;
-
-
 }
 
 
@@ -214,5 +227,5 @@ input {
 
 
  #timer_menu {
-    width: 45em;
+    width: 35em;
  }
