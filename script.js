@@ -19,6 +19,9 @@ var timerInterval; // store a ref to a timer variable
 var isBreak = false; // bool for if a break is active
 var isPaused = true; // true at start, true if timer isn't moving
 
+var counter = 0;
+var countertext = document.getElementById('countertext');
+
 /**
 * Handles timer related things like ticking it down as needed, switching
 * to a break, and playing audio when the timer finishes. 
@@ -26,12 +29,11 @@ var isPaused = true; // true at start, true if timer isn't moving
 */
 function timer() {
   var timertext = document.getElementById('timertext');
-  var countertext = document.getElementById('countertext');
   var time = timertext.innerText.split(':');
   var splitCounter = countertext.innerText.split(' ');
   var minutes = parseInt(time[0]);
   var seconds = parseInt(time[1]);
-  var counter = parseInt(splitCounter[2]);
+  counter = parseInt(splitCounter[2]);
 
   if (seconds > 0) {
       seconds--;
@@ -90,6 +92,8 @@ function reset() {
   pause();
   isBreak = false;
   title.innerText = "Pomodoro timer!";
+  counter = 0;
+  countertext.innerText = `Completed pomodoros: ${String(counter)}`;
 }
 
 function resetNotCounter() { 
