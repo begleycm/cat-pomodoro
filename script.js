@@ -40,14 +40,20 @@ function timer() {
   timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   changeTimerTitle();
 
-  if (minutes === 0 && seconds === 0) {
-      clearInterval(timerInterval);
-      if (!isBreak) {
-          startBreak(shortT);
-      } else {
-          startBreak(studyT);
-      }
-      playAlarm();
+  if (minutes == 0 && seconds == 0) {
+    console.log("hit zero")
+    if (!isBreak) { // If not a break, start one
+      isBreak = true
+      minutes = shortT
+      seconds = 0
+      timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    } else { // If there is a break, reset the timer
+      minutes = studyT
+      seconds = 0
+      isBreak = false
+      timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+    playAlarm()
   }
 }
 
@@ -60,9 +66,7 @@ function start() {
       passiveRain.play();
       if (timerInterval == undefined) {
           timerInterval = setInterval(timer, 1000);
-      } else {
-          alert("Timer is already running");
-      } 
+      }
       isPaused = false;
       play.innerText = "Pause";
   } else {
