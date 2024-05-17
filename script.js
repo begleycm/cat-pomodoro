@@ -232,8 +232,6 @@ function saveSettings() {
       longT = 10;
   }
   soundOn = soundCheck.checked; // True if checked, false if not
-  alarmSound.volume = slider.value / 100; // set sound to toggle bar in settings
-  clickAudio.volume = slider.value / 100; // click audio
 
   resetNotCounter();
 }
