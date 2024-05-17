@@ -26,9 +26,12 @@ var isPaused = true; // true at start, true if timer isn't moving
 */
 function timer() {
   var timertext = document.getElementById('timertext');
+  var countertext = document.getElementById('countertext');
   var time = timertext.innerText.split(':');
+  var splitCounter = countertext.innerText.split(' ');
   var minutes = parseInt(time[0]);
   var seconds = parseInt(time[1]);
+  var counter = parseInt(splitCounter[2]);
 
   if (seconds > 0) {
       seconds--;
@@ -41,12 +44,13 @@ function timer() {
   changeTimerTitle();
 
   if (minutes == 0 && seconds == 0) {
-    console.log("hit zero")
     if (!isBreak) { // If not a break, start one
+      counter++;
       isBreak = true
       minutes = shortT
       seconds = 0
       timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      countertext.innerText = `Completed pomodoros: ${String(counter)}`;
     } else { // If there is a break, reset the timer
       minutes = studyT
       seconds = 0
