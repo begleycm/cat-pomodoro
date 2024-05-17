@@ -1,7 +1,9 @@
 window.onload = function () {
   console.log("page loaded!");
+  // call windows to auto close them
   settings();
   about();
+  audioSettings()
   reset(); // reset to default each opening
 };
 
@@ -49,8 +51,8 @@ function timer() {
   }
 }
 
+// Rain noise stuff:
 var passiveRain = new Audio("sounds/passive_rain.mp3");
-passiveRain.volume = 0.05;
 passiveRain.loop = true;
 
 function start() { 
@@ -169,13 +171,6 @@ document.addEventListener("mouseup", () => {
   selection = null;
 });
 
-var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
-
-slider.oninput = function() {
-  output.innerHTML = this.value;
-};
-
 function about() {
   let aboutVis = document.getElementById("about_menu");
 
@@ -205,6 +200,16 @@ function settings() {
   }
 }
 
+function audioSettings() {
+  let audioVis = document.getElementById("audio_settings_menu");
+
+  if (audioVis.style.visibility === "hidden") {
+    audioVis.style.visibility = "visible";
+  } else {
+    audioVis.style.visibility = "hidden";
+  }
+}
+
 function saveSettings() {
   var studyTime = document.getElementById("studyTime").value;
   var shortTime = document.getElementById("shortTime").value;
@@ -231,4 +236,30 @@ function saveSettings() {
   clickAudio.volume = slider.value / 100; // click audio
 
   resetNotCounter();
+}
+
+const rainVolumeSlider = document.getElementById("rain-volume-slider");
+const alarmVolumeSlider = document.getElementById("alarm-volume-slider");
+const rainDisplay = document.getElementById("rain-volume-display");
+const alarmDisplay = document.getElementById("alarm-volume-display");
+
+passiveRain.volume = rainVolumeSlider.value
+alarmSound.volume = alarmVolumeSlider.value
+
+rainVolumeSlider.addEventListener("input", () => {
+  passiveRain.volume = rainVolumeSlider.value;
+  updateRainVolumeDisplay();
+});
+
+function updateRainVolumeDisplay() {
+  rainDisplay.textContent = `Rain volume: ${Math.floor(passiveRain.volume * 100)}%`;
+}
+
+alarmVolumeSlider.addEventListener("input", () => {
+  alarmSound.volume = alarmVolumeSlider.value;
+  updatealarmVolumeDisplay();
+});
+
+function updatealarmVolumeDisplay() {
+  alarmDisplay.textContent = `Alarm volume: ${Math.floor(alarmSound.volume * 100)}%`;
 }
