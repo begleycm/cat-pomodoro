@@ -122,11 +122,13 @@ function stopInterval() {
   timerInterval = undefined;
 }
 
-var alarmSound = new Audio("sounds/Ding.mp3");
+var alarmString = "flute"
 var clickAudio = new Audio("sounds/mixkit-interface-click-1126.wav"); // click button sound
 var soundOn = true; // bool for if sound should be on
+var alarmSound = new Audio("sounds/" + alarmString + ".mp3");
 
 function playAlarm() {
+  alarmSound = new Audio("sounds/" + alarmString + ".mp3");
   if (soundOn) {
       alarmSound.play();
   }
@@ -273,3 +275,14 @@ alarmVolumeSlider.addEventListener("input", () => {
 function updatealarmVolumeDisplay() {
   alarmDisplay.textContent = `Alarm volume: ${Math.floor(alarmSound.volume * 100)}%`;
 }
+
+function changeAlarm() {
+  var x = document.getElementById("mySelect");
+  var i = x.selectedIndex;
+  alarmString = x.options[i].text
+  console.log(alarmString)
+}
+
+// function five() {
+//   document.getElementById('timertext').innerText = `${String(0).padStart(2, '0')}:05`;
+// }
