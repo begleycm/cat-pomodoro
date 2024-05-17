@@ -20,37 +20,37 @@
             </div>
 
             <div class="menubar">
-                <div class="menubutton">file</div>
-                <div class="menubutton" onclick="about()">about</div>
-                <div class="menubutton" onclick="settings()">settings</div>
-                <div class="menubutton" onclick="audioSettings()">audio</div>
+                <div class="menubuttons">
+                    <button>file</button>
+                    <button onclick="about()">about</button>
+                    <button onclick="settings()">settings</button>
+                    <button onclick="audioSettings()">audio</button>
+                </div>
             </div>
 
             <div class="windowbody">
 
                 <!--Work timer-->
                 <div class="timer">
-                    <div class="flex_sidebyside" id="work">
-                        <p id="w_minutes">25</p>
+                    <div class="timertext" id="timertext">99:99</div>
+                    <!-- <p id="w_minutes">25</p>
                         <p>:</p>
-                        <p id="w_seconds">00</p> <!--Currently starts at 25-->
+                        <p id="w_seconds">00</p> Currently starts at 25 -->
 
-                        <p id="counter">0</p> <!--Counter for completed pomodoros-->
+                    <!-- <p id="counter">0</p> Counter for completed pomodoros -->
+                    <div class="flex_sidebyside">
+                        <!-- <button onclick="pause()" id="pause" class="control_button">Pause</button> -->
+                        <button onclick="start()" id="start" class="control_button">Start</button>
+                        <button onclick="reset()" id="reset" class="control_button">Reset</button>
+                        <!-- <button onclick="set3()" id="set3" class="control_button">test</button> -->
+                    </div>
+                    <div class="flex_sidebyside">
+                        <button onclick="short_break()" id="pause" class="control_button">Short Break</button>
+                        <button onclick="long_break()" id="start" class="control_button">Long Break</button>
                     </div>
                 </div>
 
-                <div class="flex_sidebyside">
-                    <!-- <button onclick="pause()" id="pause" class="control_button">Pause</button> -->
-                    <button onclick="start()" id="start" class="control_button">Start</button>
-                    <button onclick="reset()" id="reset" class="control_button">Reset</button>
-                    <!-- <button onclick="set3()" id="set3" class="control_button">test</button> -->
-                </div>
-                <div class="flex_sidebyside">
-                    <button onclick="short_break()" id="pause" class="control_button">Short Break</button>
-                    <button onclick="long_break()" id="start" class="control_button">Long Break</button>
-                </div>
             </div>
-
         </div>
 
         <!-- SETTINGS MENU -->
@@ -95,13 +95,15 @@
                 <h1 class="titletext">About</h1>
                 <button onclick="about()" value="x">X</button>
             </div>
+            <div class="windowbody">
+                <div class="more_flex_container">
 
-            <div class="more_flex_container">
-                <p>
-                    Pomodoro timer project made by Connor Begley and Ben Bonnell. Pomodoro
-                    is a study technique used to work in intervals separated by short breaks.
-                <p>
+                    <p>Pomodoro timer project made by Connor Begley and Ben Bonnell.</p>
+
+                    <p>Pomodoro is a study technique used to work in intervals separated by short breaks.</p>
+
                     <img src="images/cat_icon.jpg" alt="catLogo" style="width:100px;height:100px;">
+                </div>
             </div>
         </div>
 
