@@ -61,11 +61,16 @@ function timer() {
   }
 }
 
+var passiveRain = new Audio("sounds/passive_rain.mp3")
+passiveRain.volume = 0.05
+passiveRain.loop = true
+
 /**
  * Starts the timer from whatever time it is at. Basically a play button.
  */
 function start() { 
   if (isPaused) {
+    passiveRain.play()
     if(timerInterval == undefined){
       timerInterval = setInterval(timer, 1000);
     } else {
@@ -83,6 +88,7 @@ function start() {
  * Pauses the timer.
  */
 function pause() { 
+  passiveRain.pause()
   stopInterval()
   play.innerText = "Start"
   isPaused = true;
@@ -205,8 +211,7 @@ function onMouseDrag({ movementX, movementY }) {
 
     if (topFuture + (parseInt(getStyle.height)) < parentHeight && topFuture > 0){
       myParent.style.top = `${topFuture}px`;
-    }
-    else {
+    } else {
       console.log("not workin son:", topFuture)
     }
     
@@ -245,8 +250,7 @@ function about() {
   
   if (aboutVis.style.visibility === "hidden") {
     aboutVis.style.visibility = "visible";
-  }
-  else {
+  } else {
     aboutVis.style.visibility = "hidden"
   }
 }
@@ -274,8 +278,7 @@ function settings() {
   
   if (menu.style.visibility === "hidden") {
     menu.style.visibility = "visible";
-  }
-  else {
+  } else {
     menu.style.visibility = "hidden"
   }
 }
