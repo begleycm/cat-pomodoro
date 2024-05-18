@@ -249,3 +249,17 @@ input {
     font-family: Georgia, serif;
     font-size: 8em;
 }
+
+.mode_tab {
+    background-color: #8b2635;
+    border-color:#c02f45;
+    margin: 4px;
+    height: 28px;
+    font-size: 24px;
+    color: white;
+    padding: 3px;
+}
+
+.mode_tab p {
+    margin-top: -4px;
+}
