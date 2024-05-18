@@ -40,6 +40,8 @@ body {
     border-color: #2c3d55;
     font-size: 1em;
     line-height: 2em;
+
+    
 }
 
 /* those 3 buttons when the user hovers over them */
@@ -243,7 +245,7 @@ input {
 
 .timertext {
     font-family: Georgia, serif;
-    font-size: 8em;
+    font-size: 7em;
 }
 
 .mode_tab {
@@ -257,5 +259,7 @@ input {
 }
 
 .mode_tab p {
+    color: #fdf0d5;
     margin-top: -4px;
+
 }
