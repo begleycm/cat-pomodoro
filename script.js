@@ -228,7 +228,7 @@ function saveSettings() {
   var studyTime = document.getElementById("studyTime").value;
   var shortTime = document.getElementById("shortTime").value;
   var longTime = document.getElementById("longTime").value;
-  let soundCheck = document.getElementById("soundCheckBox");
+  //let soundCheck = document.getElementById("soundCheckBox");
 
   if (studyTime != "") {
       studyT = studyTime;
@@ -245,7 +245,7 @@ function saveSettings() {
   } else {
       longT = 10;
   }
-  soundOn = soundCheck.checked; // True if checked, false if not
+  //soundOn = soundCheck.checked; // True if checked, false if not
 
   resetNotCounter();
 }

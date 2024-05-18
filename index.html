@@ -12,11 +12,12 @@
 <body>
     <div class="flex_container" id="work_timer">
 
+        <!-- Timer MENU -->
         <div class="fauxwindow" id="timer_menu">
 
             <div class="titlebar" id="titlebar">
                 <h1 class="titletext">Pomodoro timer!</h1>
-                <button onclick="" value="x">X</button>
+                <button onclick="" value="x">
             </div>
 
             <div class="menubar">
@@ -62,25 +63,25 @@
 
             <div class="titlebar">
                 <h1 class="titletext">Settings</h1>
-                <button onclick="settings()">X</button>
+                <button onclick="settings()">
             </div>
             <div class="windowbody">
                 <div class="flex_container">
-                    <div class="flex_sidebyside">
+                    <div class="flex_sidebyside setting">
                         <p>Study Time:</p>
-                        <input type="number" id="studyTime">
+                        <input type="number" id="studyTime" value="25">
                     </div>
-                    <div class="flex_sidebyside">
+                    <div class="flex_sidebyside setting">
                         <p>Short Break Time:</p>
-                        <input type="number" id="shortTime">
+                        <input type="number" id="shortTime" value="5">
                     </div>
-                    <div class="flex_sidebyside">
+                    <div class="flex_sidebyside setting">
                         <p>Long Break Time:</p>
-                        <input type="number" id="longTime">
+                        <input type="number" id="longTime" value="10">
                     </div>
-                    <div class="flex_sidebyside">
-                        <p>Alarm sound on?</p>
-                        <input class="soundcheck" type="checkbox" id="soundCheckBox">
+                    <div class="flex_sidebyside setting">
+                        <p>Timer Repeats?</p>
+                        <input type="checkbox" id="timerRepeats">
                     </div>
                     <div class="flex_sidebyside">
                         <button onclick="saveSettings()" id="saveSettings" class="control_button">Save</button>
@@ -94,7 +95,7 @@
 
             <div class="titlebar">
                 <h1 class="titletext">About</h1>
-                <button onclick="about()" value="x">X</button>
+                <button onclick="about()" value="x">
             </div>
             <div class="windowbody">
                 <div class="more_flex_container">
@@ -108,12 +109,12 @@
             </div>
         </div>
 
-        <!-- SETTINGS MENU -->
+        <!-- AUDIO SETTINGS MENU -->
         <div class="fauxwindow" id="audio_settings_menu">
 
             <div class="titlebar">
                 <h1 class="titletext">Audio</h1>
-                <button onclick="audioSettings()">X</button>
+                <button onclick="audioSettings()">
             </div>
             <div class="windowbody">
                 <div class="flex_container">

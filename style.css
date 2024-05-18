@@ -33,7 +33,8 @@ body {
 
 /* the 3 buttons with class="controlbutton" */
 .control_button {
-    width: 10em;
+    color: #fdf0d5;
+    width: 8em;
     margin: 1em;
     background-color: #8b2635;
     border-width: 4px;
@@ -41,7 +42,7 @@ body {
     font-size: 1em;
     line-height: 2em;
 
-    
+
 }
 
 /* those 3 buttons when the user hovers over them */
@@ -94,6 +95,10 @@ body {
     position: absolute;
     right: 4px;
     top: 4px;
+
+    background-image: url("images/X_icon.png");
+    background-position: center;
+    background-size: cover;
 }
 
 .titlebar button:hover {
@@ -146,17 +151,6 @@ body {
     content: "\00a0 ";
 }
 
-#settings_menu {
-    width: 25em;
-    /* height: 20em; */
-
-    position: absolute;
-
-    top: 25%;
-    left: 75%;
-    transform: translate(-50%, 0);
-
-}
 
 #about_menu {
     width: 15em;
@@ -169,7 +163,7 @@ body {
 
 }
 
-#about_menu p{
+#about_menu p {
     margin: 1em;
 
 }
@@ -178,18 +172,9 @@ body {
     display: none;
 }
 
-input {
-    margin: .5em;
-    width: 2em;
-    font-size: 2em;
-    background-color: #00ff00;
-}
 
 
-#settings_menu p {
-    margin: .5em;
-    font-size: 2em;
-}
+
 
 
 /* Volume slider style from w3 schools, edited by ben b. */
@@ -244,13 +229,13 @@ input {
 }
 
 .timertext {
-    font-family: Georgia, serif;
+    font-family: serif;
     font-size: 7em;
 }
 
 .mode_tab {
     background-color: #8b2635;
-    border-color:#c02f45;
+    border-color: #c02f45;
     margin: 4px;
     height: 28px;
     font-size: 24px;
@@ -262,4 +247,38 @@ input {
     color: #fdf0d5;
     margin-top: -4px;
 
+}
+
+.setting {
+    width: 95%;
+    height: 38px;
+    margin: auto;
+    margin-top: 10px;
+    border-style: double;
+}
+
+.setting p {
+
+    font-size: 28px;
+    margin: 0;
+    margin-top: 4px;
+}
+
+#settings_menu {
+    width: 20em;
+    /* height: 20em; */
+
+    position: absolute;
+
+    top: 25%;
+    left: 75%;
+    transform: translate(-50%, 0);
+
+}
+
+input {
+    margin: .25em;
+    width: 2em;
+    font-size: 1.5em;
+    background-color: #f1e0bc;
 }
