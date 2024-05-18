@@ -36,23 +36,19 @@ body {
     width: 10em;
     margin: 1em;
     background-color: #8b2635;
-    border: 20;
+    border-width: 4px;
     border-color: #2c3d55;
     font-size: 1em;
     line-height: 2em;
-    font-family: 'w95fa';
 }
 
 /* those 3 buttons when the user hovers over them */
 /* same thing but with a lighter background */
 .control_button:hover {
-    width: 10em;
-    margin: 1em;
+
     background-color: #cc4055;
-    border: 20;
-    border-color: #2c3d55;
-    font-size: 1em;
-    line-height: 2em;
+
+
 }
 
 .fauxwindow {
