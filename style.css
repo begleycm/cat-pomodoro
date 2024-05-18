@@ -282,3 +282,7 @@ input {
     font-size: 1.5em;
     background-color: #f1e0bc;
 }
+
+.flex_sidebyside_setting p {
+    width: 10em;
+}

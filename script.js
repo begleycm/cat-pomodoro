@@ -22,6 +22,8 @@ var isPaused = true; // true at start, true if timer isn't moving
 var counter = 0;
 var countertext = document.getElementById('countertext');
 
+var isRain = true;
+
 /**
 * Handles timer related things like ticking it down as needed, switching
 * to a break, and playing audio when the timer finishes. 
@@ -34,6 +36,11 @@ function timer() {
   var minutes = parseInt(time[0]);
   var seconds = parseInt(time[1]);
   counter = parseInt(splitCounter[2]);
+  if (isRain) {
+    passiveRain.play(); // plays the rain if the checkbox was changed
+  } else if (!isRain && !passiveRain.isPaused) {
+    passiveRain.pause(); // pauses if checkbox changed
+  }
 
   if (seconds > 0) {
       seconds--;
@@ -69,15 +76,17 @@ passiveRain.loop = true;
 
 function start() { 
   if (isPaused) {
+    if (isRain) {
       passiveRain.play();
-      if (timerInterval == undefined) {
-          timerInterval = setInterval(timer, 1000);
-      }
-      isPaused = false;
-      play.innerText = "Pause";
-  } else {
+    }
+    if (timerInterval == undefined) {
+        timerInterval = setInterval(timer, 1000);
+    }
+    isPaused = false;
+    play.innerText = "Pause";
+    } else {
       pause();
-  }
+    }
 }
 
 function pause() { 
@@ -122,6 +131,17 @@ function stopInterval() {
   timerInterval = undefined;
 }
 
+function changeTimerTitle() {
+  var timertext = document.getElementById('timertext');
+  title.innerText = timertext.innerText;
+}
+
+function defaultTitle() {
+  title.innerText = "Pomodoro timer!";
+}
+
+/////////////// Audio ///////////////
+
 var alarmString = "flute"
 var clickAudio = new Audio("sounds/mixkit-interface-click-1126.wav"); // click button sound
 var soundOn = true; // bool for if sound should be on
@@ -132,15 +152,6 @@ function playAlarm() {
   if (soundOn) {
       alarmSound.play();
   }
-}
-
-function changeTimerTitle() {
-  var timertext = document.getElementById('timertext');
-  title.innerText = timertext.innerText;
-}
-
-function defaultTitle() {
-  title.innerText = "Pomodoro timer!";
 }
 
 ///////////////////////////// Window stuff ///////////////////////////////
@@ -286,3 +297,13 @@ function changeAlarm() {
 // function five() {
 //   document.getElementById('timertext').innerText = `${String(0).padStart(2, '0')}:05`;
 // }
+
+rainOn.addEventListener("change", () => {
+  isRain = document.getElementById('rainOn').checked;
+  console.log(isRain);
+});
+
+alarmOn.addEventListener("change", () => {
+  soundOn = document.getElementById('alarmOn').checked;
+  console.log(soundOn);
+});
