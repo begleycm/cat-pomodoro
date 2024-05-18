@@ -36,11 +36,7 @@ function timer() {
   var minutes = parseInt(time[0]);
   var seconds = parseInt(time[1]);
   counter = parseInt(splitCounter[2]);
-  if (isRain) {
-    passiveRain.play(); // plays the rain if the checkbox was changed
-  } else if (!isRain && !passiveRain.isPaused) {
-    passiveRain.pause(); // pauses if checkbox changed
-  }
+  
 
   if (seconds > 0) {
       seconds--;
@@ -300,6 +296,11 @@ function changeAlarm() {
 
 rainOn.addEventListener("change", () => {
   isRain = document.getElementById('rainOn').checked;
+  if (isRain) {
+    passiveRain.play();
+  } else {
+    passiveRain.pause();
+  }
   console.log(isRain);
 });
 
