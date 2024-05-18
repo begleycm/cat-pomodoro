@@ -39,21 +39,21 @@
                         <button class="mode_tab"><p>Long Break</p></button>
                         
                     </div>
-                    <div class="timertext" id="timertext">99:99</div>
+                    
+                    <div class="timertext" id="timertext">25:00</div>
                     <!-- <p id="w_minutes">25</p>
                         <p>:</p>
                         <p id="w_seconds">00</p> Currently starts at 25 -->
 
                     <!-- <p id="counter">0</p> Counter for completed pomodoros -->
                     <div class="flex_sidebyside">
-                        <!-- <button onclick="pause()" id="pause" class="control_button">Pause</button> -->
                         <button onclick="start()" id="start" class="control_button">Start</button>
                         <button onclick="reset()" id="reset" class="control_button">Reset</button>
-                        <!-- <button onclick="set3()" id="set3" class="control_button">test</button> -->
                     </div>
                     <div class="flex_sidebyside">
                         <button onclick="short_break()" id="pause" class="control_button">Short Break</button>
                         <button onclick="long_break()" id="start" class="control_button">Long Break</button>
+                        <!-- <button onclick="five()" id="5" class="control_button">5test</button> -->
                     </div>
                 </div>
 
@@ -85,9 +85,6 @@
                         <p>Alarm sound on?</p>
                         <input class="soundcheck" type="checkbox" id="soundCheckBox">
                     </div>
-                    <div class="slidecontainer">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                    </div>
                     <div class="flex_sidebyside">
                         <button onclick="saveSettings()" id="saveSettings" class="control_button">Save</button>
                     </div>
@@ -110,6 +107,37 @@
                     <p>Pomodoro is a study technique used to work in intervals separated by short breaks.</p>
 
                     <img src="images/cat_icon.jpg" alt="catLogo" style="width:100px;height:100px;">
+                </div>
+            </div>
+        </div>
+
+        <!-- SETTINGS MENU -->
+        <div class="fauxwindow" id="audio_settings_menu">
+
+            <div class="titlebar">
+                <h1 class="titletext">Audio</h1>
+                <button onclick="audioSettings()">X</button>
+            </div>
+            <div class="windowbody">
+                <div class="flex_container">
+                    <div class="slidecontainer">
+                        <input type="range" min="0" max="1" step="0.01" id="rain-volume-slider"/>
+                        <p id="rain-volume-display">Rain volume: 50%</p>
+                    </div>
+                    <div class="slidecontainer">
+                        <input type="range" min="0" max="1" step="0.01" id="alarm-volume-slider"/>
+                        <p id="alarm-volume-display">Alarm volume: 50%</p>
+                    </div>
+                    </div class="flex_sidebyside">
+                        <p>alarm options</p>
+                        <form>
+                            <select id="mySelect" onchange="changeAlarm()">
+                              <option>simple</option>
+                              <option>flute</option>
+                            </select>
+                        </form>
+                        <div id="demo"><p></p></div>
+                    </div>
                 </div>
             </div>
         </div>
