@@ -35,9 +35,9 @@
                 <div class="timer">
                     <div class="flex_sidebyside">
                         
-                        <button class="mode_tab"><p>Study</p></button>
-                        <button class="mode_tab"><p>Break</p></button>
-                        <button class="mode_tab"><p>Long Break</p></button>
+                        <button onclick="study()" class="mode_tab"><p>Study</p></button>
+                        <button onclick="short_break()" class="mode_tab"><p>Break</p></button>
+                        <button onclick="long_break()" class="mode_tab"><p>Long Break</p></button>
                         
                     </div>
                     
@@ -47,10 +47,6 @@
                     <div class="flex_sidebyside">
                         <button onclick="start()" id="start" class="control_button">Start</button>
                         <button onclick="reset()" id="reset" class="control_button">Reset</button>
-                    </div>
-                    <div class="flex_sidebyside">
-                        <button onclick="short_break()" id="pause" class="control_button">Short Break</button>
-                        <button onclick="long_break()" id="start" class="control_button">Long Break</button>
                         <!-- <button onclick="five()" id="5" class="control_button">5test</button> -->
                     </div>
                 </div>

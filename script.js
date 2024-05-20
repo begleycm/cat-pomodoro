@@ -127,6 +127,13 @@ function resetNotCounter() {
   title.innerText = "Pomodoro timer!";
 }
 
+function study() {
+  defaultTitle();
+  document.getElementById('timertext').innerText = `${String(studyT).padStart(2, '0')}:00`;
+  pause();
+  isBreak = false;
+}
+
 function short_break() {
   defaultTitle();
   document.getElementById('timertext').innerText = `${String(shortT).padStart(2, '0')}:00`;
