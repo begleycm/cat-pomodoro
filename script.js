@@ -37,13 +37,13 @@ function timer() {
   var minutes = parseInt(time[0]);
   var seconds = parseInt(time[1]);
   counter = parseInt(splitCounter[2]);
-  
+
 
   if (seconds > 0) {
-      seconds--;
+    seconds--;
   } else if (minutes > 0 && seconds == 0) {
-      seconds = 59;
-      minutes--;
+    seconds = 59;
+    minutes--;
   }
 
   timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
@@ -89,29 +89,29 @@ function timer() {
 var passiveRain = new Audio("sounds/passive_rain.mp3");
 passiveRain.loop = true;
 
-function start() { 
+function start() {
   if (isPaused) {
     if (isRain) {
       passiveRain.play();
     }
     if (timerInterval == undefined) {
-        timerInterval = setInterval(timer, 1000);
+      timerInterval = setInterval(timer, 1000);
     }
     isPaused = false;
     play.innerText = "Pause";
-    } else {
-      pause();
-    }
+  } else {
+    pause();
+  }
 }
 
-function pause() { 
+function pause() {
   passiveRain.pause();
   stopInterval();
   play.innerText = "Start";
   isPaused = true;
 }
 
-function reset() { 
+function reset() {
   document.getElementById('timertext').innerText = `${String(studyT).padStart(2, '0')}:00`;
   pause();
   isBreak = false;
@@ -120,7 +120,7 @@ function reset() {
   countertext.innerText = `Completed pomodoros: ${String(counter)}`;
 }
 
-function resetNotCounter() { 
+function resetNotCounter() {
   document.getElementById('timertext').innerText = `${String(studyT).padStart(2, '0')}:00`;
   pause();
   isBreak = false;
@@ -128,6 +128,7 @@ function resetNotCounter() {
 }
 
 function study() {
+  handleModeSelect("study");
   defaultTitle();
   document.getElementById('timertext').innerText = `${String(studyT).padStart(2, '0')}:00`;
   pause();
@@ -135,6 +136,7 @@ function study() {
 }
 
 function short_break() {
+  handleModeSelect("break");
   defaultTitle();
   document.getElementById('timertext').innerText = `${String(shortT).padStart(2, '0')}:00`;
   pause();
@@ -142,6 +144,7 @@ function short_break() {
 }
 
 function long_break() {
+  handleModeSelect("long_break");
   defaultTitle();
   document.getElementById('timertext').innerText = `${String(longT).padStart(2, '0')}:00`;
   pause();
@@ -162,6 +165,37 @@ function defaultTitle() {
   title.innerText = "Pomodoro timer!";
 }
 
+// this may be diabolical idk
+function handleModeSelect(mode) {
+  const studyBtn = document.getElementById("studytab");
+  const breakBtn = document.getElementById("breaktab");
+  const longBreakBtn = document.getElementById("longbreaktab");
+
+  if (typeof (mode) != "string") {
+    console.log("ERROR: mode needs to be a string")
+    return;
+  }
+  switch (mode) {
+    case "study":
+      studyBtn.classList.add("active_tab")
+      breakBtn.classList.remove("active_tab")
+      longBreakBtn.classList.remove("active_tab")
+      break;
+    case "break":
+      studyBtn.classList.remove("active_tab")
+      breakBtn.classList.add("active_tab")
+      longBreakBtn.classList.remove("active_tab")
+      break;
+    case "long_break":
+      studyBtn.classList.remove("active_tab")
+      breakBtn.classList.remove("active_tab")
+      longBreakBtn.classList.add("active_tab")
+      break;
+    default:
+      break;
+  }
+}
+
 /////////////// Audio ///////////////
 
 var alarmString = "flute"
@@ -172,7 +206,7 @@ function playAlarm() {
   var alarmSound = new Audio("sounds/" + alarmString + ".mp3");
   alarmSound.volume = alarmVolume
   if (soundOn) {
-      alarmSound.play();
+    alarmSound.play();
   }
 }
 
@@ -182,27 +216,27 @@ const titleBars = document.querySelectorAll(".titlebar");
 var selection = null;
 
 function onMouseDrag({ movementX, movementY }) {
-  if (selection){
-      let myParent = selection.closest(".fauxwindow");
-      let getStyle = window.getComputedStyle(myParent);
-      let leftValue = parseInt(getStyle.left);
-      let topValue = parseInt(getStyle.top);
+  if (selection) {
+    let myParent = selection.closest(".fauxwindow");
+    let getStyle = window.getComputedStyle(myParent);
+    let leftValue = parseInt(getStyle.left);
+    let topValue = parseInt(getStyle.top);
 
-      let leftFuture = leftValue + movementX;
-      let topFuture = topValue + movementY;
+    let leftFuture = leftValue + movementX;
+    let topFuture = topValue + movementY;
 
-      let parentWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-      let parentHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    let parentWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    let parentHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
-      if (leftFuture + (parseInt(getStyle.width) / 2) < parentWidth && leftFuture > (parseInt(getStyle.width) / 2)){
-          myParent.style.left = `${leftFuture}px`;
-      }
+    if (leftFuture + (parseInt(getStyle.width) / 2) < parentWidth && leftFuture > (parseInt(getStyle.width) / 2)) {
+      myParent.style.left = `${leftFuture}px`;
+    }
 
-      if (topFuture + (parseInt(getStyle.height)) < parentHeight && topFuture > 0){
-          myParent.style.top = `${topFuture}px`;
-      } else {
-          console.log("not workin son:", topFuture);
-      }
+    if (topFuture + (parseInt(getStyle.height)) < parentHeight && topFuture > 0) {
+      myParent.style.top = `${topFuture}px`;
+    } else {
+      console.log("not workin son:", topFuture);
+    }
   }
 }
 
@@ -210,7 +244,7 @@ document.addEventListener("mousemove", onMouseDrag);
 
 titleBars.forEach(titleBar => {
   titleBar.addEventListener("mousedown", (event) => {
-      selection = event.target;
+    selection = event.target;
   });
 });
 
@@ -222,18 +256,18 @@ function about() {
   let aboutVis = document.getElementById("about_menu");
 
   if (aboutVis.style.visibility === "hidden") {
-      aboutVis.style.visibility = "visible";
+    aboutVis.style.visibility = "visible";
   } else {
-      aboutVis.style.visibility = "hidden";
+    aboutVis.style.visibility = "hidden";
   }
 }
 
 var buttons = document.getElementsByClassName("control_button");
 
 for (var i = 0; i < buttons.length; i++) {
-  buttons[i].addEventListener("click", function() {
-      console.log("click sound action");
-      clickAudio.play();
+  buttons[i].addEventListener("click", function () {
+    console.log("click sound action");
+    clickAudio.play();
   });
 }
 
@@ -241,9 +275,9 @@ function settings() {
   let menu = document.getElementById("settings_menu");
 
   if (menu.style.visibility === "hidden") {
-      menu.style.visibility = "visible";
+    menu.style.visibility = "visible";
   } else {
-      menu.style.visibility = "hidden";
+    menu.style.visibility = "hidden";
   }
 }
 
@@ -265,19 +299,19 @@ function saveSettings() {
   //let soundCheck = document.getElementById("soundCheckBox");
 
   if (studyTime != "") {
-      studyT = studyTime;
+    studyT = studyTime;
   } else {
-      studyT = 25;
+    studyT = 25;
   }
   if (shortTime != "") {
-      shortT = shortTime;
+    shortT = shortTime;
   } else {
-      shortT = 5;
+    shortT = 5;
   }
   if (longTime != "") {
-      longT = longTime;
+    longT = longTime;
   } else {
-      longT = 10;
+    longT = 10;
   }
   doesRepeat = timerRepeats.checked; // True if checked, false if not
 

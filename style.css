@@ -249,6 +249,10 @@ body {
 
 }
 
+.mode_tab.active_tab {
+    background-color: #5c0d19;
+}
+
 .setting {
     width: 95%;
     height: 38px;
