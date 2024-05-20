@@ -153,6 +153,7 @@ body {
 
 
 #about_menu {
+    visibility: hidden;
     width: 15em;
 
     position: absolute;
@@ -269,6 +270,7 @@ body {
 }
 
 #settings_menu {
+    visibility: hidden;
     width: 20em;
     /* height: 20em; */
 
@@ -289,4 +291,8 @@ input {
 
 .flex_sidebyside_setting p {
     width: 10em;
+}
+
+#audio_settings_menu {
+    visibility: hidden;
 }
