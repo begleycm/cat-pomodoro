@@ -271,6 +271,15 @@ for (var i = 0; i < buttons.length; i++) {
   });
 }
 
+var modes = document.getElementsByClassName("mode_tab");
+
+for (var i = 0; i < modes.length; i++) {
+  modes[i].addEventListener("click", function () {
+    console.log("click sound action");
+    clickAudio.play();
+  });
+}
+
 function settings() {
   let menu = document.getElementById("settings_menu");
 
