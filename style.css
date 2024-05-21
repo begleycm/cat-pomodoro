@@ -178,51 +178,7 @@ body {
 
 
 
-/* Volume slider style from w3 schools, edited by ben b. */
-.slidecontainer {
-    width: 100%;
-    /* Width of the outside container */
-}
 
-/* The slider itself */
-.slider {
-    -webkit-appearance: none;
-    /* Override default CSS styles */
-    appearance: none;
-    width: 80%;
-    /* Full-width */
-    height: 25px;
-    /* Specified height */
-    background: #d3d3d3;
-    /* Grey background */
-    border-radius: 3px;
-}
-
-/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    /* Override default look */
-    appearance: none;
-    width: 25px;
-    /* Set a specific slider handle width */
-    height: 25px;
-    /* Slider handle height */
-    background: #cc4055;
-    border-color: #8b2635;
-    cursor: pointer;
-    /* Cursor on hover */
-}
-
-.slider::-moz-range-thumb {
-    width: 25px;
-    /* Set a specific slider handle width */
-    height: 25px;
-    /* Slider handle height */
-    background: #cc4055;
-    border-color: #8b2635;
-    cursor: pointer;
-    /* Cursor on hover */
-}
 
 
 #timer_menu {
@@ -295,4 +251,76 @@ input {
 
 #audio_settings_menu {
     visibility: hidden;
+    width: 12em;
+    top: 50%;
+    left: 30%
 }
+
+input[type="range"] {
+
+    /* removing default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    /* creating a custom design */
+    width: 90%;
+    height: 15px;
+    cursor: pointer;
+    outline: none;
+    /*  slider progress trick  */
+    overflow: hidden;
+}
+
+/* Track: webkit browsers */
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 15px;
+    background: #374557;
+}
+
+/* Track: Mozilla Firefox */
+input[type="range"]::-moz-range-track {
+    height: 15px;
+    background: #374557;
+
+}
+
+/* Thumb: webkit */
+input[type="range"]::-webkit-slider-thumb {
+    /* removing default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    /* creating a custom design */
+    height: 15px;
+    width: 15px;
+    background-color: #5c0d19;
+    border: 2px solid #8b2635;
+    border-radius: 0%;
+    /*  slider progress trick  */
+    box-shadow: -407px 0 0 400px #1d2f3d;
+}
+
+
+/* Thumb: Firefox */
+input[type="range"]::-moz-range-thumb {
+    height: 11px;
+    width: 15px;
+    background-color: #5c0d19;
+    border-radius: 0%;
+    border: 2px solid #8b2635;
+    /*  slider progress trick  */
+    box-shadow: -407px 0 0 400px #1d2f3d;
+}
+
+#mySelect {
+    background-color: #1d2f3d;
+    color: white;
+
+    font-size: 18px;
+    width: 8em;
+}
+
+.custom-select select {
+    display: none;
+    /*hide original SELECT element: */
+}
+
+

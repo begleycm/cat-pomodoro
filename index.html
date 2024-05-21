@@ -34,13 +34,19 @@
                 <!--Work timer-->
                 <div class="timer">
                     <div class="flex_sidebyside">
-                        
-                        <button onclick="study()" class="mode_tab active_tab" id="studytab"><p>Study</p></button>
-                        <button onclick="short_break()" class="mode_tab" id="breaktab"><p>Break</p></button>
-                        <button onclick="long_break()" class="mode_tab" id="longbreaktab"><p>Long Break</p></button>
-                        
+
+                        <button onclick="study()" class="mode_tab active_tab" id="studytab">
+                            <p>Study</p>
+                        </button>
+                        <button onclick="short_break()" class="mode_tab" id="breaktab">
+                            <p>Break</p>
+                        </button>
+                        <button onclick="long_break()" class="mode_tab" id="longbreaktab">
+                            <p>Long Break</p>
+                        </button>
+
                     </div>
-                    
+
                     <div class="timertext" id="timertext">25:00</div>
                     <div class="countertext" id="countertext">Completed pomodoros: 0</div>
 
@@ -114,34 +120,40 @@
             </div>
             <div class="windowbody">
                 <div class="flex_container">
-                    <div class="slidecontainer">
-                        <p id="rain-volume-display">Rain volume: 50%</p>
-                        <input type="range" min="0" max="1" step="0.01" id="rain-volume-slider"/>
-                    </div>
-                    <div class="slidecontainer">
-                        <p id="alarm-volume-display">Alarm volume: 50%</p>
-                        <input type="range" min="0" max="1" step="0.01" id="alarm-volume-slider"/>
-                    </div>
-                    <div class="flex_sidebyside_setting">
+
+                    <div class="flex_sidebyside setting">
                         <p>Rain on?</p>
                         <input type="checkbox" id="rainOn">
                     </div>
-                    <div class="flex_sidebyside_setting">
+
+
+
+                    <div id="rain-volume-display">Rain volume: 50%</div>
+                    <input type="range" min="0" max="1" step="0.01" id="rain-volume-slider" class="custom_slider"/>
+
+
+                    <div class="flex_sidebyside setting">
                         <p>Alarm on?</p>
                         <input type="checkbox" id="alarmOn">
                     </div>
-                    </div class="flex_sidebyside">
-                        <p>alarm options</p>
-                        <form>
-                            <select id="mySelect" onchange="changeAlarm()">
-                              <option>simple</option>
-                              <option>flute</option>
-                            </select>
-                        </form>
-                    </div>
-                </div>
+
+
+                    <div id="alarm-volume-display">Alarm volume: 50%</div>
+                    <input type="range" min="0" max="1" step="0.01" id="alarm-volume-slider" class="custom_slider"/>
+
+
+                <div class="setting" style="margin-bottom: 1em; padding-bottom: 1.5em;">
+                <p>Alarm sound:</p>
+                <form>
+                    <select id="mySelect" onchange="changeAlarm()">
+                        <option>simple</option>
+                        <option>flute</option>
+                    </select>
+                </form>
             </div>
         </div>
+    </div>
+    </div>
 
 </body>
 
