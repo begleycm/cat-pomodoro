@@ -198,7 +198,7 @@ function handleModeSelect(mode) {
 
 /////////////// Audio ///////////////
 
-var alarmString = "flute"
+var alarmString = "simple"
 var clickAudio = new Audio("sounds/mixkit-interface-click-1126.wav"); // click button sound
 var soundOn = true; // bool for if sound should be on
 
