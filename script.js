@@ -366,7 +366,7 @@ function five() {
 
 rainOn.addEventListener("change", () => {
   isRain = document.getElementById('rainOn').checked;
-  if (isRain) {
+  if (isRain && !isPaused) {
     passiveRain.play();
   } else {
     passiveRain.pause();
