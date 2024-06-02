@@ -1,10 +1,12 @@
 window.onload = function () {
   console.log("page loaded!");
   // call windows to auto close them
+  loadLocal()
   settings();
   about();
   audioSettings()
   reset(); // reset to default each opening
+  console.log(studyT)
 };
 
 // Default times:
@@ -366,6 +368,8 @@ function saveSettings() {
   }
   doesRepeat = timerRepeats.checked; // True if checked, false if not
 
+  saveLocal()
+
   resetNotCounter();
 }
 
@@ -435,3 +439,36 @@ alarmOn.addEventListener("change", () => {
   soundOn = document.getElementById('alarmOn').checked;
   console.log(soundOn);
 });
+
+/**
+ * Saves settings for both audio and settings between browser loads.
+ */
+function saveLocal() {
+  localStorage.setItem("studyT", JSON.stringify(studyT))
+  localStorage.setItem("shortT", JSON.stringify(shortT))
+  localStorage.setItem("longT", JSON.stringify(longT))
+  localStorage.setItem("doesRepeat", JSON.stringify(doesRepeat))
+}
+
+/**
+ * Loads both audio and settings from the browser.
+ */
+function loadLocal() {
+  const savedStudyT = localStorage.getItem("studyT");
+  const savedShortT = localStorage.getItem("shortT");
+  const savedLongT = localStorage.getItem("longT");
+  const savedRepeat = localStorage.getItem("doesRepeat");
+
+  if (savedStudyT) {
+    studyT = JSON.parse(savedStudyT);
+  }
+  if (savedShortT) {
+    shortT = JSON.parse(savedShortT);
+  }
+  if (savedLongT) {
+    longT = JSON.parse(savedLongT);
+  }
+  if (savedRepeat) {
+    doesRepeat = JSON.parse(savedRepeat);
+  }
+}
