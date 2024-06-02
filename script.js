@@ -1,12 +1,12 @@
 window.onload = function () {
   console.log("page loaded!");
   // call windows to auto close them
-  loadLocal()
+  loadLocal(); // Loads settings from localStorage
   settings();
   about();
   audioSettings()
   reset(); // reset to default each opening
-  console.log(studyT)
+  console.log(alarmOn)
 };
 
 // Default times:
@@ -25,7 +25,7 @@ var doesRepeat = true;
 var counter = 0;
 var countertext = document.getElementById('countertext');
 
-var isRain = true;
+var rainOn = true;
 
 /**
 * Handles timer related things like ticking it down as needed, switching
@@ -95,7 +95,7 @@ passiveRain.loop = true;
  */
 function start() {
   if (isPaused) {
-    if (isRain) {
+    if (rainOn) {
       passiveRain.play();
     }
     if (timerInterval == undefined) {
@@ -231,12 +231,12 @@ function handleModeSelect(mode) {
 
 var alarmString = "simple"
 var clickAudio = new Audio("sounds/mixkit-interface-click-1126.wav"); // click button sound
-var soundOn = true; // bool for if sound should be on
+var alarmOn = true; // bool for if the alarm should be on
 
 function playAlarm() {
   var alarmSound = new Audio("sounds/" + alarmString + ".mp3");
   alarmSound.volume = alarmVolume
-  if (soundOn) {
+  if (alarmOn) {
     alarmSound.play();
   }
 }
@@ -368,7 +368,7 @@ function saveSettings() {
   }
   doesRepeat = timerRepeats.checked; // True if checked, false if not
 
-  saveLocal()
+  saveLocalSettings()
 
   resetNotCounter();
 }
@@ -388,6 +388,7 @@ passiveRain.volume = rainVolumeSlider.value
 rainVolumeSlider.addEventListener("input", () => {
   passiveRain.volume = rainVolumeSlider.value;
   updateRainVolumeDisplay();
+  saveLocalAudio()
 });
 
 /**
@@ -396,6 +397,7 @@ rainVolumeSlider.addEventListener("input", () => {
 alarmVolumeSlider.addEventListener("input", () => {
   alarmVolume = alarmVolumeSlider.value;
   updateAlarmVolumeDisplay();
+  saveLocalAudio()
 });
 
 function updateRainVolumeDisplay() { // Updates volume displayed for rain
@@ -406,11 +408,15 @@ function updateAlarmVolumeDisplay() { // Updates volume displayed for alarm
   alarmDisplay.textContent = `Alarm volume: ${Math.floor(alarmVolume * 100)}%`;
 }
 
+/**
+ * Changes which alarm is being used.
+ */
 function changeAlarm() {
   var x = document.getElementById("mySelect");
   var i = x.selectedIndex;
   alarmString = x.options[i].text
   console.log(alarmString)
+  saveLocalAudio()
 }
 
 /**
@@ -423,31 +429,44 @@ function five() {
 /**
  * Controls the rain audio for whent he checkbox is changed.
  */
-rainOn.addEventListener("change", () => {
-  isRain = document.getElementById('rainOn').checked;
-  if (isRain && !isPaused) { // Should only play when timer is starteds
+rainOnCheck.addEventListener("change", () => {
+  rainOn = document.getElementById('rainOnCheck').checked;
+  if (rainOn && !isPaused) { // Should only play when timer is starteds
     passiveRain.play();
   } else {
     passiveRain.pause();
   }
+  saveLocalAudio()
 });
 
 /**
  * Controls the alarm audio for when the checkbox is changed.
  */
-alarmOn.addEventListener("change", () => {
-  soundOn = document.getElementById('alarmOn').checked;
-  console.log(soundOn);
+alarmOnCheck.addEventListener("change", () => {
+  alarmOn = document.getElementById('alarmOnCheck').checked;
+  console.log(alarmOn);
+  saveLocalAudio()
 });
 
 /**
- * Saves settings for both audio and settings between browser loads.
+ * Saves settings for settings between browser loads.
  */
-function saveLocal() {
+function saveLocalSettings() {
   localStorage.setItem("studyT", JSON.stringify(studyT))
   localStorage.setItem("shortT", JSON.stringify(shortT))
   localStorage.setItem("longT", JSON.stringify(longT))
   localStorage.setItem("doesRepeat", JSON.stringify(doesRepeat))
+}
+
+/**
+ * Saved settings for audio between browser loads. I had to make this
+ * into separate function because we want the audio settings to save without
+ * a save button.
+ */
+function saveLocalAudio() {
+  localStorage.setItem("alarmOn", JSON.stringify(alarmOn))
+  localStorage.setItem("rainOn", JSON.stringify(rainOn))
+  localStorage.setItem("alarmString", JSON.stringify(alarmString))
 }
 
 /**
@@ -458,6 +477,9 @@ function loadLocal() {
   const savedShortT = localStorage.getItem("shortT");
   const savedLongT = localStorage.getItem("longT");
   const savedRepeat = localStorage.getItem("doesRepeat");
+  const savedAlarm = localStorage.getItem("alarmOn");
+  const savedRain = localStorage.getItem("rainOn");
+  const savedAlarmString = localStorage.getItem("alarmString");
 
   if (savedStudyT) {
     studyT = JSON.parse(savedStudyT);
@@ -470,5 +492,14 @@ function loadLocal() {
   }
   if (savedRepeat) {
     doesRepeat = JSON.parse(savedRepeat);
+  }
+  if (savedAlarm) {
+    alarmOn = JSON.parse(savedAlarm);
+  }
+  if (savedRain) {
+    rainOn = JSON.parse(savedRain);
+  }
+  if (savedAlarmString) {
+    alarmString = JSON.parse(savedAlarmString);
   }
 }
