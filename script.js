@@ -481,6 +481,7 @@ function loadLocal() {
   const savedRain = localStorage.getItem("rainOn");
   const savedAlarmString = localStorage.getItem("alarmString");
 
+  // variables
   if (savedStudyT) {
     studyT = JSON.parse(savedStudyT);
   }
@@ -502,4 +503,24 @@ function loadLocal() {
   if (savedAlarmString) {
     alarmString = JSON.parse(savedAlarmString);
   }
+
+  // Sets display of checkboxes and time values
+  document.getElementById("studyTime").value = studyT
+  document.getElementById("shortTime").value = shortT
+  document.getElementById("longTime").value = longT
+  document.getElementById("timerRepeats").checked = doesRepeat
+  document.getElementById("rainOnCheck").checked = rainOn
+  document.getElementById("alarmOnCheck").checked = alarmOn
+
+  // Volume text display
+  let rainVolume = document.getElementById("rain-volume-slider").value
+  document.getElementById("rain-volume-display").innerText = `Rain volume: ${Math.round(rainVolume * 100)}%`;
+  let alarmVolume = document.getElementById("alarm-volume-slider").value
+  document.getElementById("alarm-volume-display").innerText = `Alarm volume: ${Math.round(alarmVolume * 100)}%`;
+}
+
+///////// A bunch of getter methods
+
+function getTimerRepeats() {
+  return timerRepeats;
 }
