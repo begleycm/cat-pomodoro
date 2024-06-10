@@ -1,10 +1,12 @@
 window.onload = function () {
   console.log("page loaded!");
   // call windows to auto close them
+  loadLocal(); // Loads settings from localStorage
   settings();
   about();
   audioSettings()
   reset(); // reset to default each opening
+  console.log(alarmOn)
 };
 
 // Default times:
@@ -23,7 +25,7 @@ var doesRepeat = true;
 var counter = 0;
 var countertext = document.getElementById('countertext');
 
-var isRain = true;
+var rainOn = true;
 
 /**
 * Handles timer related things like ticking it down as needed, switching
@@ -37,7 +39,6 @@ function timer() {
   var minutes = parseInt(time[0]);
   var seconds = parseInt(time[1]);
   counter = parseInt(splitCounter[2]);
-
 
   if (seconds > 0) {
     seconds--;
@@ -89,9 +90,12 @@ function timer() {
 var passiveRain = new Audio("sounds/passive_rain.mp3");
 passiveRain.loop = true;
 
+/**
+ * Starts the timer and sets the button to say pause.
+ */
 function start() {
   if (isPaused) {
-    if (isRain) {
+    if (rainOn) {
       passiveRain.play();
     }
     if (timerInterval == undefined) {
@@ -104,6 +108,9 @@ function start() {
   }
 }
 
+/**
+ * Pauses the timer and changes the button to say start.
+ */
 function pause() {
   passiveRain.pause();
   stopInterval();
@@ -111,6 +118,9 @@ function pause() {
   isPaused = true;
 }
 
+/**
+ * Reset the timer to its base study time and the counter to 0.
+ */
 function reset() {
   document.getElementById('timertext').innerText = `${String(studyT).padStart(2, '0')}:00`;
   pause();
@@ -120,6 +130,9 @@ function reset() {
   countertext.innerText = `Completed pomodoros: ${String(counter)}`;
 }
 
+/**
+ * Resets the timer to base, but leaves the counter as it is.
+ */
 function resetNotCounter() {
   document.getElementById('timertext').innerText = `${String(studyT).padStart(2, '0')}:00`;
   pause();
@@ -127,6 +140,9 @@ function resetNotCounter() {
   title.innerText = "Pomodoro timer!";
 }
 
+/**
+ * Study tab.
+ */
 function study() {
   handleModeSelect("study");
   defaultTitle();
@@ -135,6 +151,9 @@ function study() {
   isBreak = false;
 }
 
+/**
+ * Short break tab.
+ */
 function short_break() {
   handleModeSelect("break");
   defaultTitle();
@@ -143,6 +162,9 @@ function short_break() {
   isBreak = true;
 }
 
+/**
+ * Long break tab.
+ */
 function long_break() {
   handleModeSelect("long_break");
   defaultTitle();
@@ -151,16 +173,25 @@ function long_break() {
   isBreak = true;
 }
 
+/**
+ * Stops the timer interval.
+ */
 function stopInterval() {
   clearInterval(timerInterval);
   timerInterval = undefined;
 }
 
+/**
+ * Changes the timer title as each second passes.
+ */
 function changeTimerTitle() {
   var timertext = document.getElementById('timertext');
   title.innerText = timertext.innerText;
 }
 
+/**
+ * Changes the timer to the default text of "Pomodoro timer!".
+ */
 function defaultTitle() {
   title.innerText = "Pomodoro timer!";
 }
@@ -198,14 +229,14 @@ function handleModeSelect(mode) {
 
 /////////////// Audio ///////////////
 
-var alarmString = "flute"
+var alarmString = "simple"
 var clickAudio = new Audio("sounds/mixkit-interface-click-1126.wav"); // click button sound
-var soundOn = true; // bool for if sound should be on
+var alarmOn = true; // bool for if the alarm should be on
 
 function playAlarm() {
   var alarmSound = new Audio("sounds/" + alarmString + ".mp3");
   alarmSound.volume = alarmVolume
-  if (soundOn) {
+  if (alarmOn) {
     alarmSound.play();
   }
 }
@@ -252,6 +283,9 @@ document.addEventListener("mouseup", () => {
   selection = null;
 });
 
+/**
+ * Spawns in the about menu.
+ */
 function about() {
   let aboutVis = document.getElementById("about_menu");
 
@@ -261,7 +295,7 @@ function about() {
     aboutVis.style.visibility = "hidden";
   }
 }
-
+// All of the buttons
 var buttons = document.getElementsByClassName("control_button");
 
 for (var i = 0; i < buttons.length; i++) {
@@ -271,6 +305,18 @@ for (var i = 0; i < buttons.length; i++) {
   });
 }
 
+var modes = document.getElementsByClassName("mode_tab");
+
+for (var i = 0; i < modes.length; i++) {
+  modes[i].addEventListener("click", function () {
+    console.log("click sound action");
+    clickAudio.play();
+  });
+}
+
+/**
+ * Spawns the settings menu in.
+ */
 function settings() {
   let menu = document.getElementById("settings_menu");
 
@@ -281,6 +327,9 @@ function settings() {
   }
 }
 
+/**
+ * Spawns the audio settings menu in.
+ */
 function audioSettings() {
   let audioVis = document.getElementById("audio_settings_menu");
 
@@ -291,6 +340,10 @@ function audioSettings() {
   }
 }
 
+/**
+ * Function that occurs once the user hits the save button
+ * in settings.
+ */
 function saveSettings() {
   var studyTime = document.getElementById("studyTime").value;
   var shortTime = document.getElementById("shortTime").value;
@@ -315,9 +368,12 @@ function saveSettings() {
   }
   doesRepeat = timerRepeats.checked; // True if checked, false if not
 
+  saveLocalSettings()
+
   resetNotCounter();
 }
 
+// Bunch of volume variables defined
 const rainVolumeSlider = document.getElementById("rain-volume-slider");
 const alarmVolumeSlider = document.getElementById("alarm-volume-slider");
 const rainDisplay = document.getElementById("rain-volume-display");
@@ -326,46 +382,145 @@ var alarmVolume = 0.5;
 
 passiveRain.volume = rainVolumeSlider.value
 
+/**
+ * Function that changes the rain slider as needed.
+ */
 rainVolumeSlider.addEventListener("input", () => {
   passiveRain.volume = rainVolumeSlider.value;
   updateRainVolumeDisplay();
+  saveLocalAudio()
 });
 
+/**
+ * Function that changes the alarm slider as needed.
+ */
 alarmVolumeSlider.addEventListener("input", () => {
   alarmVolume = alarmVolumeSlider.value;
   updateAlarmVolumeDisplay();
+  saveLocalAudio()
 });
 
-function updateRainVolumeDisplay() {
+function updateRainVolumeDisplay() { // Updates volume displayed for rain
   rainDisplay.textContent = `Rain volume: ${Math.floor(passiveRain.volume * 100)}%`;
 }
 
-function updateAlarmVolumeDisplay() {
+function updateAlarmVolumeDisplay() { // Updates volume displayed for alarm
   alarmDisplay.textContent = `Alarm volume: ${Math.floor(alarmVolume * 100)}%`;
 }
 
+/**
+ * Changes which alarm is being used.
+ */
 function changeAlarm() {
   var x = document.getElementById("mySelect");
   var i = x.selectedIndex;
   alarmString = x.options[i].text
   console.log(alarmString)
+  saveLocalAudio()
 }
 
+/**
+ * Test function that sets the timer to 5 seconds.
+ */
 function five() {
   document.getElementById('timertext').innerText = `${String(0).padStart(2, '0')}:05`;
 }
 
-rainOn.addEventListener("change", () => {
-  isRain = document.getElementById('rainOn').checked;
-  if (isRain) {
+/**
+ * Controls the rain audio for whent he checkbox is changed.
+ */
+rainOnCheck.addEventListener("change", () => {
+  rainOn = document.getElementById('rainOnCheck').checked;
+  if (rainOn && !isPaused) { // Should only play when timer is starteds
     passiveRain.play();
   } else {
     passiveRain.pause();
   }
-  console.log(isRain);
+  saveLocalAudio()
 });
 
-alarmOn.addEventListener("change", () => {
-  soundOn = document.getElementById('alarmOn').checked;
-  console.log(soundOn);
+/**
+ * Controls the alarm audio for when the checkbox is changed.
+ */
+alarmOnCheck.addEventListener("change", () => {
+  alarmOn = document.getElementById('alarmOnCheck').checked;
+  console.log(alarmOn);
+  saveLocalAudio()
 });
+
+/**
+ * Saves settings for settings between browser loads.
+ */
+function saveLocalSettings() {
+  localStorage.setItem("studyT", JSON.stringify(studyT))
+  localStorage.setItem("shortT", JSON.stringify(shortT))
+  localStorage.setItem("longT", JSON.stringify(longT))
+  localStorage.setItem("doesRepeat", JSON.stringify(doesRepeat))
+}
+
+/**
+ * Saved settings for audio between browser loads. I had to make this
+ * into separate function because we want the audio settings to save without
+ * a save button.
+ */
+function saveLocalAudio() {
+  localStorage.setItem("alarmOn", JSON.stringify(alarmOn))
+  localStorage.setItem("rainOn", JSON.stringify(rainOn))
+  localStorage.setItem("alarmString", JSON.stringify(alarmString))
+}
+
+/**
+ * Loads both audio and settings from the browser.
+ */
+function loadLocal() {
+  const savedStudyT = localStorage.getItem("studyT");
+  const savedShortT = localStorage.getItem("shortT");
+  const savedLongT = localStorage.getItem("longT");
+  const savedRepeat = localStorage.getItem("doesRepeat");
+  const savedAlarm = localStorage.getItem("alarmOn");
+  const savedRain = localStorage.getItem("rainOn");
+  const savedAlarmString = localStorage.getItem("alarmString");
+
+  // variables
+  if (savedStudyT) {
+    studyT = JSON.parse(savedStudyT);
+  }
+  if (savedShortT) {
+    shortT = JSON.parse(savedShortT);
+  }
+  if (savedLongT) {
+    longT = JSON.parse(savedLongT);
+  }
+  if (savedRepeat) {
+    doesRepeat = JSON.parse(savedRepeat);
+  }
+  if (savedAlarm) {
+    alarmOn = JSON.parse(savedAlarm);
+  }
+  if (savedRain) {
+    rainOn = JSON.parse(savedRain);
+  }
+  if (savedAlarmString) {
+    alarmString = JSON.parse(savedAlarmString);
+  }
+
+  // Sets display of checkboxes and time values
+  document.getElementById("studyTime").value = studyT
+  document.getElementById("shortTime").value = shortT
+  document.getElementById("longTime").value = longT
+  document.getElementById("timerRepeats").checked = doesRepeat
+  document.getElementById("rainOnCheck").checked = rainOn
+  document.getElementById("alarmOnCheck").checked = alarmOn
+
+  // Volume text display
+  let rainVolume = document.getElementById("rain-volume-slider").value
+  document.getElementById("rain-volume-display").innerText = `Rain volume: ${Math.round(rainVolume * 100)}%`;
+  let alarmVolume = document.getElementById("alarm-volume-slider").value
+  document.getElementById("alarm-volume-display").innerText = `Alarm volume: ${Math.round(alarmVolume * 100)}%`;
+}
+
+///////// A bunch of getter methods
+
+function getTimerRepeats() {
+  return timerRepeats;
+}
