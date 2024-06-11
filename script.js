@@ -526,6 +526,7 @@ let audioWindow = document.getElementById("audio_settings_menu")
 
 
 addEventListener("resize", (event) => {
+  console.log(window.innerWidth)
 
   if (window.innerWidth > 810) {
     timerWindow.style.left = "50%"
@@ -539,6 +540,19 @@ addEventListener("resize", (event) => {
 
     audioWindow.style.left = "50%"
     audioWindow.style.top = "30%"
+  }
+  else {
+    timerWindow.style.left = "0%"
+    timerWindow.style.top = "0%"
+
+    settingsWindow.style.left = "0%"
+    settingsWindow.style.top = "0%"
+
+    aboutWindow.style.left = "0%"
+    aboutWindow.style.top = "0%"
+
+    audioWindow.style.left = "0%"
+    audioWindow.style.top = "0%"
   }
 
 });
