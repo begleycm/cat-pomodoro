@@ -1,12 +1,10 @@
 window.onload = function () {
-  console.log("page loaded!");
   // call windows to auto close them
   loadLocal(); // Loads settings from localStorage
   settings();
   about();
   audioSettings()
   reset(); // reset to default each opening
-  console.log(alarmOn)
 };
 
 // Default times:
@@ -265,9 +263,7 @@ function onMouseDrag({ movementX, movementY }) {
 
     if (topFuture + (parseInt(getStyle.height)) < parentHeight && topFuture > 0) {
       myParent.style.top = `${topFuture}px`;
-    } else {
-      console.log("not workin son:", topFuture);
-    }
+    } 
   }
 }
 
@@ -300,7 +296,6 @@ var buttons = document.getElementsByClassName("control_button");
 
 for (var i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener("click", function () {
-    console.log("click sound action");
     clickAudio.play();
   });
 }
@@ -309,7 +304,6 @@ var modes = document.getElementsByClassName("mode_tab");
 
 for (var i = 0; i < modes.length; i++) {
   modes[i].addEventListener("click", function () {
-    console.log("click sound action");
     clickAudio.play();
   });
 }
@@ -524,3 +518,23 @@ function loadLocal() {
 function getTimerRepeats() {
   return timerRepeats;
 }
+
+let timerWindow = document.getElementById("timer_menu")
+let settingsWindow = document.getElementById("settings_menu")
+let aboutWindow = document.getElementById("about_menu")
+let audioWindow = document.getElementById("audio_settings_menu")
+
+
+addEventListener("resize", (event) => {
+  timerWindow.style.left = "50%"
+  timerWindow.style.top = "10%"
+
+  settingsWindow.style.left = "75%"
+  settingsWindow.style.top = "25%"
+
+  aboutWindow.style.left = "20%"
+  aboutWindow.style.top = "25%"
+
+  audioWindow.style.left = "50%"
+  audioWindow.style.top = "30%"
+});
