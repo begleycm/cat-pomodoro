@@ -263,7 +263,7 @@ function onMouseDrag({ movementX, movementY }) {
 
     if (topFuture + (parseInt(getStyle.height)) < parentHeight && topFuture > 0) {
       myParent.style.top = `${topFuture}px`;
-    } 
+    }
   }
 }
 
@@ -526,15 +526,19 @@ let audioWindow = document.getElementById("audio_settings_menu")
 
 
 addEventListener("resize", (event) => {
-  timerWindow.style.left = "50%"
-  timerWindow.style.top = "10%"
 
-  settingsWindow.style.left = "75%"
-  settingsWindow.style.top = "25%"
+  if (window.innerWidth > 810) {
+    timerWindow.style.left = "50%"
+    timerWindow.style.top = "10%"
 
-  aboutWindow.style.left = "20%"
-  aboutWindow.style.top = "25%"
+    settingsWindow.style.left = "75%"
+    settingsWindow.style.top = "25%"
 
-  audioWindow.style.left = "50%"
-  audioWindow.style.top = "30%"
+    aboutWindow.style.left = "20%"
+    aboutWindow.style.top = "25%"
+
+    audioWindow.style.left = "50%"
+    audioWindow.style.top = "30%"
+  }
+
 });
