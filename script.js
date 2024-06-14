@@ -48,6 +48,10 @@ function timer() {
   timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   changeTimerTitle();
 
+  // These represent the tabs "Study" and "Break"
+  let studyTab = document.getElementById("studytab")
+  let breakTab = document.getElementById("breaktab")
+
   if (minutes == 0 && seconds == 0) {
     if (doesRepeat) {
       if (!isBreak) { // If not a break, start one
@@ -57,11 +61,19 @@ function timer() {
         seconds = 0
         timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
         countertext.innerText = `Completed pomodoros: ${String(counter)}`;
+
+        // This sets the mode tab to a break.
+        breakTab.classList.add("active_tab")
+        studyTab.classList.remove("active_tab")
       } else { // If there is a break, reset the timer
         minutes = studyT
         seconds = 0
         isBreak = false
         timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+        // This sets the mode tab to studying.
+        studyTab.classList.add("active_tab")
+        breakTab.classList.remove("active_tab")
       }
     } else {
       if (!isBreak) { // If not a break, start one
@@ -72,12 +84,20 @@ function timer() {
         timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
         countertext.innerText = `Completed pomodoros: ${String(counter)}`;
         pause()
+
+        // This sets the mode tab to a break.
+        breakTab.classList.add("active_tab")
+        studyTab.classList.remove("active_tab")
       } else { // If there is a break, reset the timer
         minutes = studyT
         seconds = 0
         isBreak = false
         timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
         pause()
+
+        // This sets the mode tab to studying.
+        studyTab.classList.add("active_tab")
+        breakTab.classList.remove("active_tab")
       }
     }
     playAlarm()
@@ -311,9 +331,6 @@ for (var i = 0; i < xButtons.length; i++) {
   });
 }
 
-
-
-
 var modes = document.getElementsByClassName("mode_tab");
 
 for (var i = 0; i < modes.length; i++) {
@@ -400,7 +417,7 @@ rainVolumeSlider.addEventListener("input", () => {
 });
 
 /**
- * Function that changes the alarm slider as needed.
+ * Function that changes the alarm slider and its display value.
  */
 alarmVolumeSlider.addEventListener("input", () => {
   alarmVolume = alarmVolumeSlider.value;
@@ -489,7 +506,7 @@ function loadLocal() {
   const savedRain = localStorage.getItem("rainOn");
   const savedAlarmString = localStorage.getItem("alarmString");
 
-  // variables
+  // This sets the current variables to the saved ones
   if (savedStudyT) {
     studyT = JSON.parse(savedStudyT);
   }
@@ -533,6 +550,7 @@ function getTimerRepeats() {
   return timerRepeats;
 }
 
+// Stuff for resizing(write more comments)
 let timerWindow = document.getElementById("timer_menu")
 let settingsWindow = document.getElementById("settings_menu")
 let aboutWindow = document.getElementById("about_menu")
