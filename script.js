@@ -291,6 +291,7 @@ function about() {
     aboutVis.style.visibility = "hidden";
   }
 }
+
 // All of the buttons
 var buttons = document.getElementsByClassName("control_button");
 
@@ -301,12 +302,14 @@ for (var i = 0; i < buttons.length; i++) {
   });
 }
 
-var xButton = document.getElementById("x")
+// This adds a click noise for all x buttons for windows
+var xButtons = document.getElementsByClassName("x");
 
-xButton.addEventListener("click", function () {
-  console.log("click sound action");
-  clickAudio.play();
-});
+for (var i = 0; i < xButtons.length; i++) {
+  xButtons[i].addEventListener("click", function () {
+    clickAudio.play();
+  });
+}
 
 
 
