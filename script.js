@@ -298,12 +298,23 @@ function about() {
 // All of the buttons
 var buttons = document.getElementsByClassName("control_button");
 
+// This plays a click sound when a button is hit
 for (var i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener("click", function () {
     console.log("click sound action");
     clickAudio.play();
   });
 }
+
+var xButton = document.getElementById("x")
+
+xButton.addEventListener("click", function () {
+  console.log("click sound action");
+  clickAudio.play();
+});
+
+
+
 
 var modes = document.getElementsByClassName("mode_tab");
 
