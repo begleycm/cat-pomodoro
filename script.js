@@ -416,6 +416,23 @@ rainVolumeSlider.addEventListener("input", () => {
   saveLocalAudio()
 });
 
+// These functions play noise when a slider is released by touch or mouse.
+rainVolumeSlider.addEventListener('mouseup', () => {
+  clickAudio.play();
+});
+
+rainVolumeSlider.addEventListener('touchend', () => {
+  sound.play();
+});
+
+alarmVolumeSlider.addEventListener('mouseup', () => {
+  clickAudio.play();
+});
+
+alarmVolumeSlider.addEventListener('touchend', () => {
+  sound.play();
+});
+
 /**
  * Function that changes the alarm slider and its display value.
  */
@@ -544,12 +561,6 @@ function loadLocal() {
   document.getElementById("alarm-volume-display").innerText = `Alarm volume: ${Math.round(alarmVolume * 100)}%`;
 }
 
-///////// A bunch of getter methods
-
-function getTimerRepeats() {
-  return timerRepeats;
-}
-
 // Stuff for resizing(write more comments)
 let timerWindow = document.getElementById("timer_menu")
 let settingsWindow = document.getElementById("settings_menu")
@@ -588,3 +599,6 @@ addEventListener("resize", (event) => {
   }
 
 });
+
+
+menubuttons.addEventListener("")
