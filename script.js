@@ -600,5 +600,11 @@ addEventListener("resize", (event) => {
 
 });
 
+var menuButtons = document.getElementsByClassName("menuButton")
 
-menubuttons.addEventListener("")
+// This makes all menu buttons play a noise when clicked
+for (var i = 0; i < menuButtons.length; i++) {
+  menuButtons[i].addEventListener("click", function () {
+    clickAudio.play();
+  });
+}
