@@ -2,24 +2,18 @@
 
 This project was created by Ben Bonnell and Connor Begley to practice collaborative web development. 
 
-## Who?
+## Who can use this?
 
 People who want to optimize their productivity and focus, primarily while studying.
 
-## What?
+## What does the timer do?
 
-Timer that can be used to break up studying into intervals, along with white noise features to add focus.
+The timer can break up studying into intervals, along with white noise features to add focus.
 
-## Why?
+## Why should I use it?
 
 To promote focus, as well as balance work and rest. Along with this, to prevent burnout and enhance material retention.
 
-## How?
+## How do I use it?
 
-Go to the [timer](begleycm.github.io/cat-pomodoro).
-
-
-![gangster](images/goofy.jpg)
-
-
-
+Go to the [timer](https://begleycm.github.io/cat-pomodoro/).
