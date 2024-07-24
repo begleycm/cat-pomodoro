@@ -264,12 +264,17 @@ function playAlarm() {
 const titleBars = document.querySelectorAll(".titlebar");
 var selection = null;
 
+var top_element_z = 1;
+
 function onMouseDrag({ movementX, movementY }) {
   if (selection) {
     let myParent = selection.closest(".fauxwindow");
+    
     let getStyle = window.getComputedStyle(myParent);
     let leftValue = parseInt(getStyle.left);
     let topValue = parseInt(getStyle.top);
+
+    myParent.style.zIndex = top_element_z // sets the window to have the top z index
 
     let leftFuture = leftValue + movementX;
     let topFuture = topValue + movementY;
@@ -292,6 +297,7 @@ document.addEventListener("mousemove", onMouseDrag);
 titleBars.forEach(titleBar => {
   titleBar.addEventListener("mousedown", (event) => {
     selection = event.target;
+    top_element_z += 1;
   });
 });
 
@@ -567,11 +573,10 @@ let settingsWindow = document.getElementById("settings_menu")
 let aboutWindow = document.getElementById("about_menu")
 let audioWindow = document.getElementById("audio_settings_menu")
 
-
 addEventListener("resize", (event) => {
-  console.log(window.innerWidth)
 
   if (window.innerWidth > 810) {
+
     timerWindow.style.left = "50%"
     timerWindow.style.top = "10%"
 
@@ -585,16 +590,16 @@ addEventListener("resize", (event) => {
     audioWindow.style.top = "30%"
   }
   else {
-    timerWindow.style.left = "0%"
+    timerWindow.style.left = "50%"
     timerWindow.style.top = "0%"
 
-    settingsWindow.style.left = "0%"
+    settingsWindow.style.left = "50%"
     settingsWindow.style.top = "0%"
 
-    aboutWindow.style.left = "0%"
+    aboutWindow.style.left = "50%"
     aboutWindow.style.top = "0%"
 
-    audioWindow.style.left = "0%"
+    audioWindow.style.left = "50%"
     audioWindow.style.top = "0%"
   }
 
@@ -608,3 +613,4 @@ for (var i = 0; i < menuButtons.length; i++) {
     clickAudio.play();
   });
 }
+
