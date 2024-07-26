@@ -605,6 +605,20 @@ addEventListener("resize", (event) => {
 
 });
 
+if (window.innerWidth < 810) {
+  timerWindow.style.left = "50%"
+    timerWindow.style.top = "0%"
+
+    settingsWindow.style.left = "50%"
+    settingsWindow.style.top = "0%"
+
+    aboutWindow.style.left = "50%"
+    aboutWindow.style.top = "0%"
+
+    audioWindow.style.left = "50%"
+    audioWindow.style.top = "0%"
+}
+
 var menuButtons = document.getElementsByClassName("menuButton")
 
 // This makes all menu buttons play a noise when clicked
