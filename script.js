@@ -520,6 +520,17 @@ function saveLocalAudio() {
 /**
  * Loads both audio and settings from the browser.
  */
+function saveLocalAudio() {
+  localStorage.setItem("alarmOn", JSON.stringify(alarmOn));
+  localStorage.setItem("rainOn", JSON.stringify(rainOn));
+  localStorage.setItem("alarmString", JSON.stringify(alarmString));
+  localStorage.setItem("rainVolume", JSON.stringify(passiveRain.volume));
+  localStorage.setItem("alarmVolume", JSON.stringify(alarmVolume));
+}
+
+/**
+ * Loads both audio and settings from the browser.
+ */
 function loadLocal() {
   const savedStudyT = localStorage.getItem("studyT");
   const savedShortT = localStorage.getItem("shortT");
@@ -528,6 +539,8 @@ function loadLocal() {
   const savedAlarm = localStorage.getItem("alarmOn");
   const savedRain = localStorage.getItem("rainOn");
   const savedAlarmString = localStorage.getItem("alarmString");
+  const savedRainVolume = localStorage.getItem("rainVolume");
+  const savedAlarmVolume = localStorage.getItem("alarmVolume");
 
   // This sets the current variables to the saved ones
   if (savedStudyT) {
@@ -551,20 +564,33 @@ function loadLocal() {
   if (savedAlarmString) {
     alarmString = JSON.parse(savedAlarmString);
   }
+  if (savedRainVolume) {
+    passiveRain.volume = JSON.parse(savedRainVolume);
+    rainVolumeSlider.value = passiveRain.volume;
+    updateRainVolumeDisplay();
+  }
+  if (savedAlarmVolume) {
+    alarmVolume = JSON.parse(savedAlarmVolume);
+    alarmVolumeSlider.value = alarmVolume;
+    updateAlarmVolumeDisplay();
+  }
 
   // Sets display of checkboxes and time values
-  document.getElementById("studyTime").value = studyT
-  document.getElementById("shortTime").value = shortT
-  document.getElementById("longTime").value = longT
-  document.getElementById("timerRepeats").checked = doesRepeat
-  document.getElementById("rainOnCheck").checked = rainOn
-  document.getElementById("alarmOnCheck").checked = alarmOn
+  document.getElementById("studyTime").value = studyT;
+  document.getElementById("shortTime").value = shortT;
+  document.getElementById("longTime").value = longT;
+  document.getElementById("timerRepeats").checked = doesRepeat;
+  document.getElementById("rainOnCheck").checked = rainOn;
+  document.getElementById("alarmOnCheck").checked = alarmOn;
 
-  // Volume text display
-  let rainVolume = document.getElementById("rain-volume-slider").value
-  document.getElementById("rain-volume-display").innerText = `Rain volume: ${Math.round(rainVolume * 100)}%`;
-  let alarmVolume = document.getElementById("alarm-volume-slider").value
-  document.getElementById("alarm-volume-display").innerText = `Alarm volume: ${Math.round(alarmVolume * 100)}%`;
+  // Set the dropdown selection based on the loaded alarmString
+  let alarmSelect = document.getElementById("mySelect");
+  for (let i = 0; i < alarmSelect.options.length; i++) {
+    if (alarmSelect.options[i].text === alarmString) {
+      alarmSelect.selectedIndex = i;
+      break;
+    }
+  }
 }
 
 // Stuff for resizing(write more comments)
