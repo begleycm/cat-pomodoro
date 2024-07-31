@@ -61,6 +61,7 @@ function timer() {
         seconds = 0
         timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
         countertext.innerText = `Completed pomodoros: ${String(counter)}`;
+        updateCompletedPomodoros()
 
         // This sets the mode tab to a break.
         breakTab.classList.add("active_tab")
@@ -541,6 +542,7 @@ function loadLocal() {
   const savedAlarmString = localStorage.getItem("alarmString");
   const savedRainVolume = localStorage.getItem("rainVolume");
   const savedAlarmVolume = localStorage.getItem("alarmVolume");
+  const savedCompPomos = localStorage.getItem("compPomos");
 
   // This sets the current variables to the saved ones
   if (savedStudyT) {
@@ -573,6 +575,12 @@ function loadLocal() {
     alarmVolume = JSON.parse(savedAlarmVolume);
     alarmVolumeSlider.value = alarmVolume;
     updateAlarmVolumeDisplay();
+  }
+  if (savedCompPomos) {
+    let c = document.getElementById("comp_pomos")
+    let split_c = c.innerText.split(" ")
+    let comp_pomo = parseInt(split_c[4])
+    c.innerText = `All time completed Pomodoros: ${String(savedCompPomos)}`;
   }
 
   // Sets display of checkboxes and time values
@@ -654,3 +662,11 @@ for (var i = 0; i < menuButtons.length; i++) {
   });
 }
 
+function updateCompletedPomodoros() {
+  let c = document.getElementById("comp_pomos")
+  let split_c = c.innerText.split(" ")
+  let comp_pomo = parseInt(split_c[4])
+  comp_pomo++;
+  c.innerText = `All time completed Pomodoros: ${String(comp_pomo)}`;
+  localStorage.setItem("compPomos", JSON.stringify(comp_pomo));
+}
