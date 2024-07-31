@@ -24,6 +24,7 @@ var isBreak = false;                          // bool for if a break is active
 var isPaused = true;                          // true at start, true if timer isn't moving
 var doesRepeat = true;                        // Timer repeats by default
 var countertext = document.getElementById('countertext');
+var compPomos = 0;                            // Initialize completed pomodoros
 
 var counter = 0;                              // Counter starts at 0
 
@@ -53,33 +54,19 @@ function timer() {
   timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   changeTimerTitle();
 
-  // These represent the tabs "Study" and "Break"
-  let studyTab = document.getElementById("studytab");
-  let breakTab = document.getElementById("breaktab");
-
   if (minutes == 0 && seconds == 0) {
     if (doesRepeat) {
       if (!isBreak) { // If not a break, start one
-        counter++;
-        isBreak = true;
-        minutes = shortT;
-        seconds = 0;
-        timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-        countertext.innerText = `Completed pomodoros: ${String(counter)}`;
-        updateCompletedPomodoros();
+        studyCompleted();
 
-        // This sets the mode tab to a break.
-        breakTab.classList.add("active_tab");
-        studyTab.classList.remove("active_tab");
+        setBreak();
       } else { // If there is a break, reset the timer
         minutes = studyT;
         seconds = 0;
         isBreak = false;
         timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
-        // This sets the mode tab to studying.
-        studyTab.classList.add("active_tab");
-        breakTab.classList.remove("active_tab");
+        setStudy();
       }
     } else {
       if (!isBreak) { // If not a break, start one
@@ -89,11 +76,10 @@ function timer() {
         seconds = 0;
         timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
         countertext.innerText = `Completed pomodoros: ${String(counter)}`;
-        pause();
+        updateCompletedPomodoros();
 
-        // This sets the mode tab to a break.
-        breakTab.classList.add("active_tab");
-        studyTab.classList.remove("active_tab");
+        pause();
+        setBreak();
       } else { // If there is a break, reset the timer
         minutes = studyT;
         seconds = 0;
@@ -101,13 +87,30 @@ function timer() {
         timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
         pause();
 
-        // This sets the mode tab to studying.
-        studyTab.classList.add("active_tab");
-        breakTab.classList.remove("active_tab");
+        setStudy();
       }
     }
     playAlarm();
   }
+}
+
+function studyCompleted() {
+  // The following defines minutes, seconds, and the counter for completed pomodoros.
+  var timertext = document.getElementById('timertext');
+  var time = timertext.innerText.split(':');
+  var splitCounter = countertext.innerText.split(' ');
+
+  var minutes = parseInt(time[0]);
+  var seconds = parseInt(time[1]);
+  counter = parseInt(splitCounter[2]);
+  
+  counter++;
+  isBreak = true;
+  minutes = shortT;
+  seconds = 0;
+  timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  countertext.innerText = `Completed pomodoros: ${String(counter)}`;
+  updateCompletedPomodoros();
 }
 
 /**
@@ -321,10 +324,7 @@ function loadLocal() {
     updateAlarmVolumeDisplay();
   }
   if (savedCompPomos) {
-    let c = document.getElementById("comp_pomos");
-    let split_c = c.innerText.split(" ");
-    let comp_pomo = parseInt(split_c[4]);
-    c.innerText = `All time completed Pomodoros: ${String(savedCompPomos)}`;
+    compPomos = JSON.parse(savedCompPomos);
   }
 
   // Sets display of checkboxes and time values
@@ -343,15 +343,15 @@ function loadLocal() {
       break;
     }
   }
+
+  // Update the display for completed pomodoros
+  document.getElementById("comp_pomos").innerText = `All time completed Pomodoros: ${String(compPomos)}`;
 }
 
 function updateCompletedPomodoros() {
-  let c = document.getElementById("comp_pomos");
-  let split_c = c.innerText.split(" ");
-  let comp_pomo = parseInt(split_c[4]);
-  comp_pomo++;
-  c.innerText = `All time completed Pomodoros: ${String(comp_pomo)}`;
-  localStorage.setItem("compPomos", JSON.stringify(comp_pomo));
+  compPomos++;
+  document.getElementById("comp_pomos").innerText = `All time completed Pomodoros: ${String(compPomos)}`;
+  localStorage.setItem("compPomos", JSON.stringify(compPomos));
 }
 
 /**

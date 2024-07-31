@@ -213,3 +213,24 @@ if (window.innerWidth < 810) {
   audioWindow.style.left = "50%";
   audioWindow.style.top = "0%";
 }
+
+function setBreak() {
+  // These represent the tabs "Study" and "Break"
+  let studyTab = document.getElementById("studytab");
+  let breakTab = document.getElementById("breaktab");
+
+  breakTab.classList.add("active_tab");
+  studyTab.classList.remove("active_tab");
+}
+
+function setStudy() {
+  // These represent the tabs "Study" and "Break"
+  let studyTab = document.getElementById("studytab");
+  let breakTab = document.getElementById("breaktab");
+  let longBreakTab = document.getElementById("longbreaktab");
+
+  // This sets the mode tab to studying.
+  studyTab.classList.add("active_tab");
+  breakTab.classList.remove("active_tab");
+  longBreakTab.classList.remove("active_tab");
+}
