@@ -1,3 +1,11 @@
+// Bunch of volume variables defined for audio slider stuff
+
+const rainVolumeSlider = document.getElementById("rain-volume-slider");
+const alarmVolumeSlider = document.getElementById("alarm-volume-slider");
+const rainDisplay = document.getElementById("rain-volume-display");
+const alarmDisplay = document.getElementById("alarm-volume-display");
+var alarmVolume = 0.5;
+
 // Below is code that makes the windows draggable.
 
 const titleBars = document.querySelectorAll(".titlebar");

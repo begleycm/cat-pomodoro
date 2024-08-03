@@ -55,15 +55,6 @@ function playAlarm() {
   }
 }
 
-// Bunch of volume variables defined
-const rainVolumeSlider = document.getElementById("rain-volume-slider");
-const alarmVolumeSlider = document.getElementById("alarm-volume-slider");
-const rainDisplay = document.getElementById("rain-volume-display");
-const alarmDisplay = document.getElementById("alarm-volume-display");
-var alarmVolume = 0.5;
-
-passiveRain.volume = rainVolumeSlider.value;
-
 /**
  * Changes which alarm is being used.
  */
