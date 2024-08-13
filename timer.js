@@ -59,43 +59,29 @@ function timer() {
       if (!isBreak) { // If not a break, start one
         studyCompleted();
 
-        setBreak();
       } else { // If there is a break, reset the timer
-        minutes = studyT;
-        seconds = 0;
-        isBreak = false;
-        timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-
-        setStudy();
+        breakCompleted();
       }
     } else {
       if (!isBreak) { // If not a break, start one
-        counter++;
-        isBreak = true;
-        minutes = shortT;
-        seconds = 0;
-        timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-        countertext.innerText = `Completed pomodoros: ${String(counter)}`;
-        updateCompletedPomodoros();
+        studyCompleted();
 
         pause();
-        setBreak();
       } else { // If there is a break, reset the timer
-        minutes = studyT;
-        seconds = 0;
-        isBreak = false;
-        timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-        pause();
+        breakCompleted();
 
-        setStudy();
+        pause();
       }
     }
     playAlarm();
   }
 }
 
+/**
+ * Called when a pomodoro is completed. This updates the timer text, and sets
+ * the timer to a break.
+ */
 function studyCompleted() {
-  // The following defines minutes, seconds, and the counter for completed pomodoros.
   var timertext = document.getElementById('timertext');
   var time = timertext.innerText.split(':');
   var splitCounter = countertext.innerText.split(' ');
@@ -111,6 +97,19 @@ function studyCompleted() {
   timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   countertext.innerText = `Completed pomodoros: ${String(counter)}`;
   updateCompletedPomodoros();
+}
+
+/**
+ * Called when a pomodoro is completed. This updates the timer text, and sets
+ * the timer to studying.
+ */
+function breakCompleted() {
+  minutes = studyT;
+  seconds = 0;
+  isBreak = false;
+  timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+  setStudy();
 }
 
 /**
