@@ -56,7 +56,8 @@ function playAlarm() {
 }
 
 /**
- * Changes which alarm is being used.
+ * Changes which alarm is being used. This is called when
+ * there is a change in the dropdown menu.
  */
 function changeAlarm() {
   var x = document.getElementById("mySelect");

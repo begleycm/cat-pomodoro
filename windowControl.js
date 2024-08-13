@@ -4,7 +4,10 @@ const rainVolumeSlider = document.getElementById("rain-volume-slider");
 const alarmVolumeSlider = document.getElementById("alarm-volume-slider");
 const rainDisplay = document.getElementById("rain-volume-display");
 const alarmDisplay = document.getElementById("alarm-volume-display");
+
+// Default values for background and volume
 var alarmVolume = 0.5;
+var bkString = "darktile"
 
 // Below is code that makes the windows draggable.
 
@@ -241,4 +244,16 @@ function setStudy() {
   studyTab.classList.add("active_tab");
   breakTab.classList.remove("active_tab");
   longBreakTab.classList.remove("active_tab");
+}
+
+/**
+ * Changes which background is being used. This is called when
+ * there is a change in the dropdown menu.
+ */
+function changeBKGR() {
+  var x = document.getElementById("mySelectBk");
+  var i = x.selectedIndex;
+  let bk = x.options[i].text;
+  document.body.style.backgroundImage = "url('images/" + bk + ".png')";
+  saveLocalBk();
 }

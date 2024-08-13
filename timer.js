@@ -262,6 +262,16 @@ function saveLocalSettings() {
 }
 
 /**
+ * Saves the current background between browser loads.
+ */
+function saveLocalBk() {
+  var x = document.getElementById("mySelectBk");
+  var i = x.selectedIndex;
+  let bk = x.options[i].text;
+  localStorage.setItem("bk", JSON.stringify(bk))
+}
+
+/**
  * Saved settings for audio between browser loads. I had to make this
  * into separate function because we want the audio settings to save without
  * a save button.
@@ -289,6 +299,7 @@ function loadLocal() {
   const savedRainVolume = localStorage.getItem("rainVolume");
   const savedAlarmVolume = localStorage.getItem("alarmVolume");
   const savedCompPomos = localStorage.getItem("compPomos");
+  const savedBk = localStorage.getItem("bk");
 
   // This sets the current variables to the saved ones
   if (savedStudyT) {
@@ -325,6 +336,9 @@ function loadLocal() {
   if (savedCompPomos) {
     compPomos = JSON.parse(savedCompPomos);
   }
+  if (savedBk) {
+    bkString = JSON.parse(savedBk);
+  }
 
   // Sets display of checkboxes and time values
   document.getElementById("studyTime").value = studyT;
@@ -342,6 +356,17 @@ function loadLocal() {
       break;
     }
   }
+
+  // Set the dropdown selection based on the loaded bkString
+  let bkSelect = document.getElementById("mySelectBk");
+  for (let i = 0; i < bkSelect.options.length; i++) {
+    if (bkSelect.options[i].text === bkString) {
+      bkSelect.selectedIndex = i;
+      break;
+    }
+  }
+  // Apply the saved background image
+  changeBKGR();
 
   // Update the display for completed pomodoros
   document.getElementById("comp_pomos").innerText = `All time completed Pomodoros: ${String(compPomos)}`;

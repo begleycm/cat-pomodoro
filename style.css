@@ -312,7 +312,7 @@ input[type="range"]::-moz-range-thumb {
     box-shadow: -407px 0 0 400px #1d2f3d;
 }
 
-#mySelect {
+.mySelect {
     background-color: #1d2f3d;
     color: white;
 

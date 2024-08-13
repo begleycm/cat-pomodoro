@@ -53,8 +53,7 @@
                     <div class="flex_sidebyside">
                         <button onclick="start()" id="start" class="control_button">Start</button>
                         <button onclick="reset()" id="reset" class="control_button">Reset</button>
-                        <!-- <button onclick="five()" id="5" class="control_button">5test</button> -->
-                    </div>
+                        <!-- <button onclick="five()" id="5" class="control_button">5test</button> -->                    </div>
 
                     <img src="images/study_anim.gif" id="pomoGif">
                 </div>
@@ -89,6 +88,16 @@
                     </div>
                     <div class="flex_sidebyside">
                         <button onclick="saveSettings()" id="saveSettings" class="control_button">Save</button>
+                    </div>
+                    <div class="setting" style="margin-bottom: 1em; padding-bottom: 1.5em;">
+                        <p>Background:</p>
+                        <form>
+                            <select id="mySelectBk" class="mySelect" onchange="changeBKGR()">
+                                <option>darktile</option>
+                                <option>rain</option>
+                                <option>cats</option>
+                            </select>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -148,7 +157,7 @@
                         <div class="setting" style="margin-bottom: 1em; padding-bottom: 1.5em;">
                             <p>Alarm sound:</p>
                             <form>
-                                <select id="mySelect" onchange="changeAlarm()">
+                                <select id="mySelect" class="mySelect" onchange="changeAlarm()">
                                     <option>simple</option>
                                     <option>flute</option>
                                     <option>cat</option>
