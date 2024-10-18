@@ -1,5 +1,7 @@
 # Pomodoro Timer!
 
+![image](https://github.com/user-attachments/assets/8fbd3af0-01be-4754-b19d-017ff308a719)
+
 This project was created by Ben Bonnell and Connor Begley to practice collaborative web development. 
 
 ## Who can use this?
