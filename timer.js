@@ -89,6 +89,8 @@ function studyCompleted() {
   var minutes = parseInt(time[0]);
   var seconds = parseInt(time[1]);
   counter = parseInt(splitCounter[2]);
+  let mode = "break";
+  handleModeSelect(mode);
   
   counter++;
   isBreak = true;
@@ -108,6 +110,8 @@ function breakCompleted() {
   seconds = 0;
   isBreak = false;
   timertext.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  let mode = "study";
+  handleModeSelect(mode);
 
   setStudy();
 }
