@@ -14,7 +14,6 @@ window.onload = function () {
 // Default times:
 var studyT = 25;
 var shortT = 5;
-var longT = 10;
 
 // General variables:
 var title = document.getElementById('title'); // string
@@ -189,17 +188,6 @@ function short_break() {
 }
 
 /**
- * Long break tab.
- */
-function long_break() {
-  handleModeSelect("long_break");
-  defaultTitle();
-  document.getElementById('timertext').innerText = `${String(longT).padStart(2, '0')}:00`;
-  pause();
-  isBreak = true;
-}
-
-/**
  * Stops the timer interval.
  */
 function stopInterval() {
@@ -229,7 +217,6 @@ function defaultTitle() {
 function saveSettings() {
   var studyTime = document.getElementById("studyTime").value;
   var shortTime = document.getElementById("shortTime").value;
-  var longTime = document.getElementById("longTime").value;
   var timerRepeats = document.getElementById("timerRepeats");
   //let soundCheck = document.getElementById("soundCheckBox");
 
@@ -242,11 +229,6 @@ function saveSettings() {
     shortT = shortTime;
   } else {
     shortT = 5;
-  }
-  if (longTime != "") {
-    longT = longTime;
-  } else {
-    longT = 10;
   }
   doesRepeat = timerRepeats.checked; // True if checked, false if not
 
@@ -261,7 +243,6 @@ function saveSettings() {
 function saveLocalSettings() {
   localStorage.setItem("studyT", JSON.stringify(studyT));
   localStorage.setItem("shortT", JSON.stringify(shortT));
-  localStorage.setItem("longT", JSON.stringify(longT));
   localStorage.setItem("doesRepeat", JSON.stringify(doesRepeat));
 }
 
@@ -295,7 +276,6 @@ function loadLocal() {
   // Loads all of the possibly saved variables from localStorage
   const savedStudyT = localStorage.getItem("studyT");
   const savedShortT = localStorage.getItem("shortT");
-  const savedLongT = localStorage.getItem("longT");
   const savedRepeat = localStorage.getItem("doesRepeat");
   const savedAlarm = localStorage.getItem("alarmOn");
   const savedRain = localStorage.getItem("rainOn");
@@ -311,9 +291,6 @@ function loadLocal() {
   }
   if (savedShortT) {
     shortT = JSON.parse(savedShortT);
-  }
-  if (savedLongT) {
-    longT = JSON.parse(savedLongT);
   }
   if (savedRepeat) {
     doesRepeat = JSON.parse(savedRepeat);
@@ -347,7 +324,6 @@ function loadLocal() {
   // Sets display of checkboxes and time values
   document.getElementById("studyTime").value = studyT;
   document.getElementById("shortTime").value = shortT;
-  document.getElementById("longTime").value = longT;
   document.getElementById("timerRepeats").checked = doesRepeat;
   document.getElementById("rainOnCheck").checked = rainOn;
   document.getElementById("alarmOnCheck").checked = alarmOn;
