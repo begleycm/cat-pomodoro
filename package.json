@@ -1,0 +1,17 @@
+{
+  "name": "cat-pomodoro",
+  "version": "1.0.0",
+  "description": "![image](https://github.com/user-attachments/assets/8fbd3af0-01be-4754-b19d-017ff308a719)",
+  "main": "audio.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+  
+}
