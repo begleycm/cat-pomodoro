@@ -1,0 +1,103 @@
+#queue_menu {
+    visibility: hidden;
+    width: 24em;
+    height: 36em;
+    top: 20%;
+    left: 15%;
+}
+
+.queue_objects_container{
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    width: 99%;
+    height: 80%;
+
+    top: 36px;
+    left: 2px;
+
+    /* background-color: green; */
+
+    overflow-y: scroll
+
+}
+
+.queue_object {
+    display: flex;
+    flex-direction: row;
+    height: 48px;
+
+    background-color: #fdf0d5;
+
+    color: black;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000000;
+
+    flex-shrink: 0;
+}
+
+.queue_object_text {
+    font-size: 32px;
+    position: absolute;
+    /* top: 6px; */
+    margin-top: 6px;
+    left: 8px;
+}
+
+.queue_object_delete_button{
+    background-color: green;
+    position: absolute;
+    margin-top: 6px;
+    right: 112px;
+
+    width: 56px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;   /* Vertical centering */
+    justify-content: center; /* Horizontal centering */
+
+    color: #fdf0d5;
+    /* width: 8em;
+    margin: 1em; */
+    background-color: #8b2635;
+    border-width: 4px;
+    border-color: #2c3d55;
+    border-style: outset;
+    font-size: 1em;
+    line-height: 2em;
+}
+
+.queue_object_delete_button:hover {
+    background-color: #cc4055;
+
+}
+
+.queue_object_delete_button:active {
+    background-color: #8b2635;
+
+}
+
+.queue_object_time_field {
+    position: absolute;
+    right: 40px;
+    height: 28px;
+}
+
+.add_study_container{
+    position: absolute;
+    width: 98%;
+    height: 4.5em;
+
+    bottom: 2px;
+    left: 2px;
+
+    background-color: #fdf0d5;
+
+    color: black;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000000;
+}

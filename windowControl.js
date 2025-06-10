@@ -97,6 +97,22 @@ function audioSettings() {
   }
 }
 
+/**
+ * Spawns the audio settings menu in.
+ */
+function openQueueWindow() {
+  
+  let queueVis = document.getElementById("queue_menu");
+
+  if (queueVis.style.visibility === "hidden") {
+    queueVis.style.visibility = "visible";
+    console.log("queue was hidden, now visible")
+  } else {
+    queueVis.style.visibility = "hidden";
+    console.log("queue was visible, now invisible")
+  }
+}
+
 // This part of the code handles when the user switches between modes using the study tabs.
 
 // this may be diabolical idk
