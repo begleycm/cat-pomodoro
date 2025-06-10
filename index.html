@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="title">Pomodoro timer!</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="queue.css">
     <link rel="icon" type="image/png" href="images/head_icon.png"> <!--Cat Icon THAT I MADE!!-->
 </head>
 
@@ -26,6 +27,7 @@
                     <button class="menuButton" onclick="about()">about</button>
                     <button class="menuButton" onclick="settings()">settings</button>
                     <button class="menuButton" onclick="audioSettings()">audio</button>
+                    <button class="menuButton" onclick="openQueueWindow()">queue</button>
                 </div>
             </div>
 
@@ -161,11 +163,38 @@
             </div>
         </div>
 
+        <!-- QUEUE MENU -->
+        <div class="fauxwindow" id="queue_menu">
+            <div class="titlebar">
+                <h1 class="titletext">Queue</h1>
+                <button onclick="openQueueWindow()" class="x">
+            </div>
+
+                <div class="flex_container">
+                    <div class="queue_objects_container">
+                        <!-- <div class="queue_object">
+                            <div class="queue_object_text">Study</div>
+                            <div class="queue_object_delete_button">Delete</div>
+                            <input class="queue_object_time_field" type="number" value="20">
+                            <div class="queue_object_handle"></div>
+                        </div> -->
+                    </div>
+                    <div class="add_study_container">
+                        <button onclick="addStudyToQueue()" id="add_study" class="control_button">Add Study</button>
+                        <button onclick="addBreakToQueue()" id="add_break" class="control_button">Add Break</button>
+                    </div>
+                </div>
+
+        </div>
+
 </body>
 
 <script src="timer.js"></script>
 <script src="windowControl.js"></script>
 <script src="audio.js"></script>
 <script src="queue.js"></script>
+<script src="queueObject.js"></script>
+<script src="queue.js"></script>
+
 
 </html>
