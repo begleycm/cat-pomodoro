@@ -6,6 +6,7 @@ window.onload = function () {
   settings();
   about();
   audioSettings();
+  openQueueWindow()
 
   // reset to default each opening
   reset();
