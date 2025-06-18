@@ -359,6 +359,12 @@ function updateCompletedPomodoros() {
   localStorage.setItem("compPomos", JSON.stringify(compPomos));
 }
 
+// TODO should set the timer to a certain time and setting(break or study).
+// This is pretty much a helper method for queue.
+function setTimer(time) {
+
+}
+
 /**
  * Test function that sets the timer to 5 seconds.
  */
