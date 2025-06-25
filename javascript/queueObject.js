@@ -20,6 +20,7 @@ class QueueObject {
         this.deleteButton.addEventListener("click", () => {
             this.element.remove();
             this.onDelete(this);
+            deleteItem(this);
         });
     }
     getElement() {

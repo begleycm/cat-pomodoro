@@ -30,6 +30,17 @@ class QueueClass {
             return element;
         }
     }
+    deQueueSpecific(item) {
+        if (this.isEmpty()) {
+            console.log("The Queue is empty! There is no element to pop-out");
+            return;
+        }
+        else {
+            const index = this.QueueData.indexOf(item);
+            const [element] = this.QueueData.splice(index, 1);
+            return element;
+        }
+    }
     size() {
         let len = this.QueueData.length;
         return len;
@@ -41,28 +52,27 @@ class QueueClass {
     }
 }
 
-
 const queue = new QueueClass(100); // len limit is 100 for now
 // Create a namespace for our queue functions
 
 const QueueFunctions = {
     addStudyToQueue: function () {
-        console.log("add study called");
         const newQueueObject = new QueueObject({
-            text: "Study",
+            text: "study",
             time: 25,
         });
         queue_container.appendChild(newQueueObject.getElement());
         queue.enQueue(newQueueObject); // enqueue new study
+        console.log("study added to queue");
     },
     addBreakToQueue: function () {
-        console.log("add break called");
         const newQueueObject = new QueueObject({
-            text: "Break",
-            time: 0,
+            text: "break",
+            time: 5,
         });
         queue_container.appendChild(newQueueObject.getElement());
         queue.enQueue(newQueueObject); // enqueue new break
+        console.log("break added to queue");
     }
 };
 
@@ -80,11 +90,36 @@ console.log("creating queue obj");
 // Otherwise, go to the next item in the queue.
 // Im using a queue (who would've thought) data structure to represent these things.
 // The user is allowed to add like 20 breaks in a row if they desire.
-if (queue.isEmpty()) {
-    // proceed normally
+
+function deleteItem(item) {
+    queue.deQueueSpecific(item);
 }
-else {
-    // dequeue last queue object and use it as the current time
-    const nextQueue = queue.deQueue();
-    // logic here that sets the timer to that time
+
+let time = 0;
+let mode = "none";
+
+function isQueue() {
+    if (queue.isEmpty()) {
+        console.log("Queue is Empty");
+        return false;
+    }
+    else {
+        // dequeue last queue object and use it as the current time
+        const nextQueue = queue.deQueue();
+
+        // logic that checks if the last mode was a study, and if so update completed pomodoros
+        const studyBtn = document.getElementById("studytab");
+        if (studyBtn.classList.contains("active_tab")) {
+            updateCompletedPomodoros();
+        }
+
+        // logic here that sets the timer to that time
+        time = nextQueue.time;
+        mode = nextQueue.text;
+        setTimer(time, mode);
+        console.log("dequeued", time, mode);
+        return true;
+    }
 }
+
+

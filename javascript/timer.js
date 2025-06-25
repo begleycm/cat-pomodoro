@@ -55,22 +55,24 @@ function timer() {
   changeTimerTitle();
 
   if (minutes == 0 && seconds == 0) {
-    if (doesRepeat) {
-      if (!isBreak) { // If not a break, start one
-        studyCompleted();
+    if (!isQueue()) {
+      if (doesRepeat) {
+        if (!isBreak) { // If not a break, start one
+          studyCompleted();
 
-      } else { // If there is a break, reset the timer
-        breakCompleted();
-      }
-    } else {
-      if (!isBreak) { // If not a break, start one
-        studyCompleted();
+        } else { // If there is a break, reset the timer
+          breakCompleted();
+        }
+      } else {
+        if (!isBreak) { // If not a break, start one
+          studyCompleted();
 
-        pause();
-      } else { // If there is a break, reset the timer
-        breakCompleted();
+          pause();
+        } else { // If there is a break, reset the timer
+          breakCompleted();
 
-        pause();
+          pause();
+        }
       }
     }
     playAlarm();
@@ -91,7 +93,7 @@ function studyCompleted() {
   counter = parseInt(splitCounter[2]);
   let mode = "break";
   handleModeSelect(mode);
-  
+
   counter++;
   isBreak = true;
   minutes = shortT;
@@ -361,8 +363,10 @@ function updateCompletedPomodoros() {
 
 // TODO should set the timer to a certain time and setting(break or study).
 // This is pretty much a helper method for queue.
-function setTimer(time) {
-
+function setTimer(time, mode) {
+  // this JUST changes the text right now.
+  timertext.innerText = `${String(time).padStart(2, '0')}:${String(0).padStart(2, '0')}`;
+  handleModeSelect(mode); // changes mode accordinly
 }
 
 /**

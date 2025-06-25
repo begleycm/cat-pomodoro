@@ -119,7 +119,6 @@ function openQueueWindow() {
 function handleModeSelect(mode) {
     const studyBtn = document.getElementById("studytab");
     const breakBtn = document.getElementById("breaktab");
-    const longBreakBtn = document.getElementById("longbreaktab");
   
     if (typeof (mode) != "string") {
       console.log("ERROR: mode needs to be a string")
@@ -129,17 +128,10 @@ function handleModeSelect(mode) {
       case "study":
         studyBtn.classList.add("active_tab")
         breakBtn.classList.remove("active_tab")
-        longBreakBtn.classList.remove("active_tab")
         break;
       case "break":
         studyBtn.classList.remove("active_tab")
         breakBtn.classList.add("active_tab")
-        longBreakBtn.classList.remove("active_tab")
-        break;
-      case "long_break":
-        studyBtn.classList.remove("active_tab")
-        breakBtn.classList.remove("active_tab")
-        longBreakBtn.classList.add("active_tab")
         break;
       default:
         break;
@@ -254,12 +246,10 @@ function setStudy() {
   // These represent the tabs "Study" and "Break"
   let studyTab = document.getElementById("studytab");
   let breakTab = document.getElementById("breaktab");
-  let longBreakTab = document.getElementById("longbreaktab");
 
   // This sets the mode tab to studying.
   studyTab.classList.add("active_tab");
   breakTab.classList.remove("active_tab");
-  longBreakTab.classList.remove("active_tab");
 }
 
 /**
