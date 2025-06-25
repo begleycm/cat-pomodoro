@@ -1,4 +1,4 @@
-export class QueueObject {
+class QueueObject {
     constructor({ text = "", time = 0, onDelete = () => { } } = {}) {
         this.text = text;
         this.time = time;
@@ -29,4 +29,3 @@ export class QueueObject {
         return { text: this.text, time: this.time };
     }
 }
-//# sourceMappingURL=queueObject.js.map

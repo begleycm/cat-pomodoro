@@ -1,8 +1,50 @@
-// TO COMPILE THE TYPESCRIPT FILES, RUN "npm run build" ON THE COMMAND LINE
-import { QueueObject } from './queueObject.js';
-import { QueueClass } from './QueueClass.js';
+class QueueClass {
+    constructor(length) {
+        this.QueueData = [];
+        this.maxSize = 0;
+        this.maxSize = length;
+    }
+    isEmpty() {
+        let result = this.QueueData.length <= 0;
+        return result;
+    }
+    isFull() {
+        let result = this.QueueData.length >= this.maxSize;
+        return result;
+    }
+    enQueue(dataItem) {
+        if (this.isFull()) {
+            console.log("The queue is full!");
+        }
+        else {
+            this.QueueData.push(dataItem);
+        }
+    }
+    deQueue() {
+        if (this.isEmpty()) {
+            console.log("The Queue is empty! There is no element to pop-out");
+            return;
+        }
+        else {
+            var element = this.QueueData.shift();
+            return element;
+        }
+    }
+    size() {
+        let len = this.QueueData.length;
+        return len;
+    }
+    printQueue() {
+        for (let i = 0; i < this.QueueData.length; i++) {
+            console.log(this.QueueData[i]);
+        }
+    }
+}
+
+
 const queue = new QueueClass(100); // len limit is 100 for now
 // Create a namespace for our queue functions
+
 const QueueFunctions = {
     addStudyToQueue: function () {
         console.log("add study called");
@@ -23,6 +65,7 @@ const QueueFunctions = {
         queue.enQueue(newQueueObject); // enqueue new break
     }
 };
+
 // Add to window object
 window.QueueFunctions = QueueFunctions;
 const queue_container = document.querySelector(".queue_objects_container");
@@ -30,6 +73,7 @@ if (!queue_container) {
     throw new Error("Could not find .queue_objects_container in the DOM");
 }
 console.log("creating queue obj");
+
 //////////////////////////////////////////////////////// Queue Logic ////////////////////////////////////////////////////////////////////////////////////
 // Thinking about queue logic
 // If the queue becomes empty, load the opposite of what was last loaded.
@@ -44,4 +88,3 @@ else {
     const nextQueue = queue.deQueue();
     // logic here that sets the timer to that time
 }
-//# sourceMappingURL=queue.js.map
