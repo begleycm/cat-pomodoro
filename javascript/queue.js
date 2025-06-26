@@ -98,6 +98,22 @@ function deleteItem(item) {
 let time = 0;
 let mode = "none";
 
+/**
+ * Starts the queue.
+ */
+function startQueue() {
+    if (isQueue()) {
+        start();
+    } else {
+        alert("Queue is empty!");
+    }
+}
+
+/**
+ * Checks if the queue is full or empty and consumes a queue object.
+ * 
+ * @returns True if the queue has something in it, false if it's empty.
+ */
 function isQueue() {
     if (queue.isEmpty()) {
         console.log("Queue is Empty");
@@ -106,6 +122,8 @@ function isQueue() {
     else {
         // dequeue last queue object and use it as the current time
         const nextQueue = queue.deQueue();
+        const element = nextQueue.getElement();
+        queue_container.removeChild(element);
 
         // logic that checks if the last mode was a study, and if so update completed pomodoros
         const studyBtn = document.getElementById("studytab");
