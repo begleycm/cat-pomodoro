@@ -51,7 +51,8 @@
                     <div class="flex_sidebyside">
                         <button onclick="start()" id="start" class="control_button">Start</button>
                         <button onclick="reset()" id="reset" class="control_button">Reset</button>
-                        <!-- <button onclick="five()" id="5" class="control_button">5test</button> -->                    </div>
+                        <!-- <button onclick="five()" id="5" class="control_button">5test</button> -->
+                    </div>
 
                     <img src="images/study_anim.gif" id="pomoGif">
                 </div>
@@ -112,7 +113,7 @@
                     <p>Pomodoro is a study technique used to work in intervals separated by short breaks.</p>
 
                     <p id="comp_pomos">All time completed Pomodoros: 0</p>
-                    
+
                     <img src="images/happy.gif" alt="catLogo" style="width:100px;height:100px;">
                 </div>
             </div>
@@ -170,21 +171,23 @@
                 <button onclick="openQueueWindow()" class="x">
             </div>
 
-                <div class="flex_container">
-                    <div class="queue_objects_container">
-                        <!-- <div class="queue_object">
+            <div class="flex_container">
+                <div class="queue_objects_container">
+                    <!-- <div class="queue_object">
                             <div class="queue_object_text">Study</div>
                             <div class="queue_object_delete_button">Delete</div>
                             <input class="queue_object_time_field" type="number" value="20">
                             <div class="queue_object_handle"></div>
                         </div> -->
-                    </div>
-                    <div class="add_study_container">
-                        <button onclick="QueueFunctions.addStudyToQueue()" id="add_study" class="control_button">Add Study</button>
-                        <button onclick="QueueFunctions.addBreakToQueue()" id="add_break" class="control_button">Add Break</button>
-                        <button onclick="startQueue()" id="start_queue" class="control_button">Start Queue</button>
-                    </div>
                 </div>
+                <div class="add_study_container">
+                    <button onclick="QueueFunctions.addStudyToQueue()" id="add_study" class="control_button">Add
+                        Study</button>
+                    <button onclick="QueueFunctions.addBreakToQueue()" id="add_break" class="control_button">Add
+                        Break</button>
+                    <button onclick="startQueue()" id="start_queue" class="control_button">Start Queue</button>
+                </div>
+            </div>
 
         </div>
 

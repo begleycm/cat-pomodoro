@@ -105,7 +105,7 @@ function startQueue() {
     if (isQueue()) {
         start();
     } else {
-        alert("Queue is empty!");
+        alert("Queue can't start!");
     }
 }
 
@@ -117,27 +117,33 @@ function startQueue() {
 function isQueue() {
     if (queue.isEmpty()) {
         console.log("Queue is Empty");
+        alert("Queue is empty!");
         return false;
-    }
-    else {
+    } else {
         // dequeue last queue object and use it as the current time
         const nextQueue = queue.deQueue();
         const element = nextQueue.getElement();
         queue_container.removeChild(element);
 
-        // logic that checks if the last mode was a study, and if so update completed pomodoros
-        const studyBtn = document.getElementById("studytab");
-        if (studyBtn.classList.contains("active_tab")) {
-            updateCompletedPomodoros();
-        }
+        if (nextQueue.time < 0) {
+            alert("Positive numbers in queue only");
+            return false;
+        } else if (nextQueue.time % 1 != 0) {
+            alert("Whole numbers in queue only");
+            return false;
+        } else {
+            // logic that checks if the last mode was a study, and if so update completed pomodoros
+            const studyBtn = document.getElementById("studytab");
+            if (studyBtn.classList.contains("active_tab")) {
+                updateCompletedPomodoros();
+            }
 
-        // logic here that sets the timer to that time
-        time = nextQueue.time;
-        mode = nextQueue.text;
-        setTimer(time, mode);
-        console.log("dequeued", time, mode);
-        return true;
+            // logic here that sets the timer to that time
+            time = nextQueue.time;
+            mode = nextQueue.text;
+            setTimer(time, mode);
+            console.log("dequeued", time, mode);
+            return true;
+        }
     }
 }
-
-

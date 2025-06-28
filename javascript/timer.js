@@ -224,12 +224,25 @@ function saveSettings() {
   //let soundCheck = document.getElementById("soundCheckBox");
 
   if (studyTime != "") {
-    studyT = studyTime;
+    // make sure it is a valid entry
+    if (!(studyTime % 1 == 0)) {
+      alert("can't be a decimal");
+    } else if (studyTime < 0) {
+      alert("Positive numbers only");
+    } else {
+      studyT = studyTime;
+    }
   } else {
     studyT = 25;
   }
   if (shortTime != "") {
-    shortT = shortTime;
+    if (!(shortTime % 1 == 0)) {
+      alert("can't be a decimal");
+    } else if (shortTime < 0) {
+      alert("Positive numbers only");
+    } else {
+      shortT = shortTime;
+    }
   } else {
     shortT = 5;
   }
