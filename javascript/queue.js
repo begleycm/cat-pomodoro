@@ -117,7 +117,7 @@ function startQueue() {
 function isQueue() {
     if (queue.isEmpty()) {
         console.log("Queue is Empty");
-        alert("Queue is empty!");
+        // alert("Queue is empty!");
         return false;
     } else {
         // dequeue last queue object and use it as the current time
