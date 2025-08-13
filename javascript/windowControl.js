@@ -269,8 +269,7 @@ function toggleFileMenu() {
 }
 
 function exitApp() {
-    // You can change this to hide UI instead if you want
-    window.close();
+    document.body.innerHTML = "<h1 style='text-align:center; margin-top: 20%;'>Goodbye 👋</h1>";
 }
 
 // Optional: Click outside to close
