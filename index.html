@@ -23,7 +23,12 @@
 
             <div class="menubar">
                 <div class="menubuttons">
-                    <button class="menuButton">file</button>
+                    <div class="dropdown">
+                        <button class="menuButton" onclick="toggleFileMenu()">file</button>
+                        <div class="dropdown-content" id="fileDropdown">
+                            <button onclick="exitApp()">Exit</button>
+                        </div>
+                    </div>
                     <button class="menuButton" onclick="about()">about</button>
                     <button class="menuButton" onclick="settings()">settings</button>
                     <button class="menuButton" onclick="audioSettings()">audio</button>

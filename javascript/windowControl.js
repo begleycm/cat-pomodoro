@@ -263,3 +263,22 @@ function changeBKGR() {
   document.body.style.backgroundImage = "url('images/" + bk + ".png')";
   saveLocalBk();
 }
+
+function toggleFileMenu() {
+    document.getElementById("fileDropdown").classList.toggle("show");
+}
+
+function exitApp() {
+    // You can change this to hide UI instead if you want
+    window.close();
+}
+
+// Optional: Click outside to close
+window.addEventListener("click", function(e) {
+    if (!e.target.matches('.menuButton')) {
+        let dropdown = document.getElementById("fileDropdown");
+        if (dropdown.classList.contains("show")) {
+            dropdown.classList.remove("show");
+        }
+    }
+});
