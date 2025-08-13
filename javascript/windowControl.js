@@ -55,6 +55,17 @@ document.addEventListener("mouseup", () => {
   selection = null;
 });
 
+const fauxWindows = document.querySelectorAll(".fauxwindow");
+
+fauxWindows.forEach(window => {
+  window.addEventListener("mousedown", () => {
+    // Increment the z-index counter
+    top_element_z += 1;
+    // Apply the new z-index to bring this window to the front
+    window.style.zIndex = top_element_z;
+  });
+});
+
 // The three below functions are for opening and closing the about menu, settings menu,
 // and the audio settings menu.
 
